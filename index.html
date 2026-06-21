@@ -1,1866 +1,1021 @@
-<!DOCTYPE html><html><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"><meta http-equiv="x-dns-prefetch-control" content="off"><script src="https://puc.poecdn.net/authenticated_preview_page/standard.3ef2c256959faf5a756d.js"></script>
-    <meta charset="utf-8">
-    <title>Poe</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-  <script src="https://puc.poecdn.net/authenticated_preview_page/disableWebRTC.9710cebe07429a9e8e06.js"></script><meta name="x-poe-allow-downloads" content="true"><meta name="x-poe-datastore-behavior" content="disabled"><script src="https://puc.poecdn.net/authenticated_preview_page/tw.50ec1b0612bf5b0c30a5.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/deps.faccd16000d314dc16d5.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/exports.b0f0f482cdeb5302b0b9.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/renderer.75c73ae6b4235f62945a.js"></script><script>Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _react = require('react'); var _react2 = _interopRequireDefault(_react);
-var _framermotion = require('framer-motion');
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mismatched — Dress loud. Live mismatched.</title>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #FF2D87;
+    --yellow: #FFD23F;
+    --aqua: #4EE0D0;
+    --lime: #C1FA4C;
+    --ink: #1A0B2E;
+    --cream: #FFF3E0;
+    --shadow: 4px 4px 0 var(--ink);
+    --shadow-lg: 6px 6px 0 var(--ink);
+    --shadow-xl: 8px 8px 0 var(--ink);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); color: var(--ink); font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  h1, h2, h3, .display { font-family: 'Lilita One', cursive; letter-spacing: 0.5px; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  img { max-width: 100%; display: block; }
 
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ink); color: var(--cream);
+    border-bottom: 4px solid var(--ink);
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .logo {
+    font-family: 'Lilita One'; font-size: 28px;
+    color: var(--yellow); display: flex; align-items: center; gap: 8px;
+    letter-spacing: 1px;
+  }
+  .logo::before { content: '✦'; color: var(--lime); }
+  .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .nav-btn {
+    padding: 8px 14px; border-radius: 999px;
+    font-weight: 700; color: var(--cream); font-size: 14px;
+    border: 2px solid transparent; transition: 0.2s;
+  }
+  .nav-btn:hover { background: var(--pink); border-color: var(--cream); }
+  .nav-btn.active { background: var(--yellow); color: var(--ink); border-color: var(--cream); }
+  .nav-cta {
+    background: var(--lime); color: var(--ink);
+    padding: 10px 18px; border-radius: 999px;
+    font-weight: 800; border: 3px solid var(--cream);
+    box-shadow: 3px 3px 0 var(--pink);
+  }
+  .nav-cta:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--pink); }
 
+  /* PAGE CONTAINER */
+  .page { display: none; padding: 32px 24px 80px; max-width: 1200px; margin: 0 auto; }
+  .page.active { display: block; animation: fadeIn 0.4s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* LANDING */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; padding: 24px 0; }
+  @media (max-width: 768px) { .hero { grid-template-columns: 1fr; } }
+  .hero-text h1 { font-size: clamp(40px, 6vw, 72px); line-height: 1; margin-bottom: 16px; }
+  .hero-text h1 .word1 { background: var(--yellow); padding: 4px 12px; display: inline-block; transform: rotate(-2deg); border: 3px solid var(--ink); box-shadow: var(--shadow); }
+  .hero-text h1 .word2 { color: var(--pink); }
+  .hero-text h1 .word3 { background: var(--aqua); padding: 4px 12px; display: inline-block; transform: rotate(1deg); border: 3px solid var(--ink); box-shadow: var(--shadow); }
+  .hero-text p { font-size: 18px; margin: 24px 0; font-weight: 500; max-width: 480px; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--pink); color: var(--cream); padding: 14px 24px;
+    border-radius: 999px; font-weight: 800; font-size: 16px;
+    border: 3px solid var(--ink); box-shadow: var(--shadow);
+  }
+  .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-lg); }
+  .btn-secondary {
+    background: var(--cream); color: var(--ink); padding: 14px 24px;
+    border-radius: 999px; font-weight: 800; font-size: 16px;
+    border: 3px solid var(--ink); box-shadow: var(--shadow);
+  }
+  .btn-secondary:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-lg); background: var(--lime); }
 
+  .hero-cards { position: relative; height: 480px; }
+  .fit-card {
+    position: absolute; width: 200px; height: 280px;
+    background: var(--cream); border: 3px solid var(--ink);
+    box-shadow: var(--shadow-lg); border-radius: 18px;
+    padding: 14px; display: flex; flex-direction: column; gap: 8px;
+    transition: 0.3s; overflow: hidden;
+  }
+  .fit-card:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
+  .fit-card.c1 { top: 20px; left: 0; transform: rotate(-6deg); background: var(--yellow); }
+  .fit-card.c2 { top: 80px; left: 180px; transform: rotate(4deg); background: var(--aqua); }
+  .fit-card.c3 { top: 200px; left: 60px; transform: rotate(-2deg); background: var(--lime); }
+  .fit-img {
+    flex: 1; border-radius: 12px; border: 2px solid var(--ink);
+    background: var(--cream); overflow: hidden;
+  }
+  .fit-img img { width: 100%; height: 100%; object-fit: cover; }
+  .fit-tag { font-weight: 800; font-size: 12px; padding: 4px 8px; background: var(--ink); color: var(--cream); border-radius: 999px; align-self: flex-start; }
 
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 60px 0; }
+  @media (max-width: 768px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+  .metric {
+    background: var(--ink); color: var(--cream);
+    padding: 20px; border-radius: 18px; border: 3px solid var(--ink);
+    box-shadow: var(--shadow); text-align: center;
+  }
+  .metric-num { font-family: 'Lilita One'; font-size: 36px; color: var(--yellow); }
+  .metric-label { font-size: 13px; font-weight: 600; opacity: 0.9; }
 
+  .features { margin: 60px 0; }
+  .section-title { font-size: 40px; margin-bottom: 24px; }
+  .section-title em { background: var(--pink); color: var(--cream); padding: 0 12px; font-style: normal; transform: rotate(-1deg); display: inline-block; }
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 768px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature {
+    background: var(--cream); border: 3px solid var(--ink);
+    border-radius: 20px; padding: 24px; box-shadow: var(--shadow);
+    transition: 0.2s;
+  }
+  .feature:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+  .feature-icon { font-size: 40px; margin-bottom: 12px; }
+  .feature h3 { font-size: 20px; margin-bottom: 8px; }
+  .feature p { font-size: 14px; line-height: 1.5; }
 
+  /* AUTH */
+  .auth-wrap { max-width: 440px; margin: 40px auto; background: var(--cream); border: 4px solid var(--ink); border-radius: 24px; box-shadow: var(--shadow-xl); padding: 32px; }
+  .auth-tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+  .auth-tab { flex: 1; padding: 12px; border: 3px solid var(--ink); border-radius: 999px; font-weight: 800; background: var(--cream); }
+  .auth-tab.active { background: var(--yellow); box-shadow: var(--shadow); }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .field input { width: 100%; padding: 12px 14px; border: 3px solid var(--ink); border-radius: 12px; font-family: inherit; font-size: 15px; background: var(--cream); }
+  .field input:focus { outline: none; background: white; box-shadow: var(--shadow); }
+  .auth-btn { width: 100%; margin-top: 8px; }
+  .social-row { display: flex; gap: 8px; margin-top: 16px; }
+  .social-btn { flex: 1; padding: 10px; border: 3px solid var(--ink); border-radius: 12px; background: var(--aqua); font-weight: 700; }
+  .social-btn:hover { background: var(--lime); }
+  .divider { text-align: center; margin: 16px 0; font-size: 12px; font-weight: 700; opacity: 0.6; }
 
+  /* WARDROBE */
+  .toolbar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  .toolbar h2 { font-size: 36px; flex: 1; min-width: 200px; }
+  .filter-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .chip {
+    padding: 8px 14px; border: 3px solid var(--ink); border-radius: 999px;
+    background: var(--cream); font-weight: 700; font-size: 13px;
+    transition: 0.2s;
+  }
+  .chip.active { background: var(--pink); color: var(--cream); box-shadow: var(--shadow); }
+  .chip:hover { transform: translate(-1px, -1px); }
 
-var _lucidereact = require('lucide-react');
+  .wardrobe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+  .wardrobe-item {
+    background: var(--cream); border: 3px solid var(--ink); border-radius: 16px;
+    box-shadow: var(--shadow); padding: 10px; transition: 0.2s; cursor: pointer;
+  }
+  .wardrobe-item:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-lg); }
+  .item-img {
+    aspect-ratio: 1; background: var(--lime); border: 2px solid var(--ink);
+    border-radius: 12px; margin-bottom: 8px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .item-img img { width: 100%; height: 100%; object-fit: cover; }
+  .item-name { font-weight: 800; font-size: 14px; margin-bottom: 4px; }
+  .item-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .item-tag { font-size: 10px; padding: 2px 6px; background: var(--ink); color: var(--cream); border-radius: 999px; font-weight: 700; }
 
+  .add-item {
+    background: var(--yellow); border: 3px dashed var(--ink); border-radius: 16px;
+    aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; cursor: pointer; font-weight: 800;
+  }
+  .add-item:hover { background: var(--lime); }
+  .add-item-icon { font-size: 40px; }
 
+  /* CAMERA MODAL */
+  .modal-bg {
+    position: fixed; inset: 0; background: rgba(26, 11, 46, 0.7);
+    z-index: 200; display: none; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-bg.active { display: flex; }
+  .modal {
+    background: var(--cream); border: 4px solid var(--ink); border-radius: 24px;
+    box-shadow: var(--shadow-xl); max-width: 520px; width: 100%;
+    padding: 24px; max-height: 90vh; overflow-y: auto;
+  }
+  .modal h3 { font-size: 28px; margin-bottom: 16px; }
+  .modal-close { float: right; width: 36px; height: 36px; border-radius: 50%; background: var(--pink); color: var(--cream); font-weight: 800; border: 3px solid var(--ink); }
+  .camera-view {
+    width: 100%; aspect-ratio: 1; background: var(--ink); border: 3px solid var(--ink);
+    border-radius: 16px; overflow: hidden; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: center; color: var(--cream);
+    position: relative;
+  }
+  .camera-view video { width: 100%; height: 100%; object-fit: cover; }
+  .camera-actions { display: flex; gap: 8px; }
+  .upload-zone {
+    border: 3px dashed var(--ink); border-radius: 16px; padding: 30px;
+    text-align: center; background: var(--aqua); cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .upload-zone:hover { background: var(--lime); }
 
+  /* GENERATOR */
+  .gen-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  @media (max-width: 768px) { .gen-controls { grid-template-columns: 1fr; } }
+  .control-block {
+    background: var(--cream); border: 3px solid var(--ink); border-radius: 18px;
+    padding: 18px; box-shadow: var(--shadow);
+  }
+  .control-block h4 { font-size: 14px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
 
-var _recharts = require('recharts');
+  .outfit-display {
+    background: var(--ink); color: var(--cream); border-radius: 24px;
+    padding: 28px; box-shadow: var(--shadow-xl); border: 4px solid var(--ink);
+  }
+  .outfit-display h3 { color: var(--yellow); font-size: 28px; margin-bottom: 16px; }
+  .outfit-pieces { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  @media (max-width: 600px) { .outfit-pieces { grid-template-columns: repeat(2, 1fr); } }
+  .piece {
+    background: var(--cream); color: var(--ink); border: 3px solid var(--cream);
+    border-radius: 14px; padding: 12px; text-align: center;
+  }
+  .piece-img {
+    aspect-ratio: 1; border-radius: 10px; overflow: hidden; margin-bottom: 8px;
+    border: 2px solid var(--ink); background: var(--lime);
+  }
+  .piece-img img { width: 100%; height: 100%; object-fit: cover; }
+  .piece-name { font-weight: 800; font-size: 13px; margin-bottom: 4px; }
+  .piece-source { font-size: 11px; opacity: 0.7; font-weight: 600; }
+  .piece-source.shop { color: var(--pink); font-weight: 800; }
+  .outfit-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .outfit-actions button { flex: 1; min-width: 120px; }
 
-// ═══════════════════════════════════════════════
-// BRAND PALETTE
-// ═══════════════════════════════════════════════
-const C = {
-  deep: '#a24857',
-  rose: '#dab6bc',
-  deepDark: '#7a2f3c',
-  deepDarker: '#5a1f2c',
-  bg: '#1a1014',
-  bgSoft: '#241419',
-  border: '#3a2128',
-  borderSoft: '#2a1820',
-  textMuted: '#c9a3a9',
-  textSoft: '#8a6a72'
-};
+  /* SHOP HUB */
+  .search-bar { display: flex; gap: 10px; margin-bottom: 20px; }
+  .search-input { flex: 1; padding: 14px 18px; border: 3px solid var(--ink); border-radius: 999px; font-family: inherit; font-size: 16px; background: var(--cream); }
+  .search-input:focus { outline: none; box-shadow: var(--shadow); }
+  .store-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .store-tab {
+    padding: 10px 16px; border: 3px solid var(--ink); border-radius: 12px;
+    font-weight: 800; background: var(--cream); font-size: 13px;
+  }
+  .store-tab.amazon.active { background: #FF9900; color: var(--ink); }
+  .store-tab.myntra.active { background: #FF3F6C; color: var(--cream); }
+  .store-tab.shein.active { background: var(--ink); color: var(--yellow); }
+  .store-tab.flipkart.active { background: #2874F0; color: var(--cream); }
+  .store-tab.all.active { background: var(--pink); color: var(--cream); }
 
-// ═══════════════════════════════════════════════
-// UTILITIES
-// ═══════════════════════════════════════════════
-const useLiveNumber = (initial, variance = 0.05, interval = 2500) => {
-  const [val, setVal] = _react.useState.call(void 0, initial);
-  _react.useEffect.call(void 0, () => {
-    const id = setInterval(() => {
-      setVal(v => {
-        const delta = (Math.random() - 0.5) * 2 * variance * initial;
-        return Math.max(0, Math.round(v + delta));
+  .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+  .shop-item {
+    background: var(--cream); border: 3px solid var(--ink); border-radius: 16px;
+    box-shadow: var(--shadow); padding: 12px; transition: 0.2s;
+  }
+  .shop-item:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-lg); }
+  .shop-img {
+    aspect-ratio: 1; border: 2px solid var(--ink); border-radius: 10px;
+    background: var(--aqua); margin-bottom: 8px; overflow: hidden;
+  }
+  .shop-img img { width: 100%; height: 100%; object-fit: cover; }
+  .shop-name { font-weight: 800; font-size: 13px; margin-bottom: 4px; min-height: 32px; }
+  .shop-meta { display: flex; justify-content: space-between; align-items: center; }
+  .shop-price { font-weight: 800; font-size: 14px; color: var(--pink); }
+  .shop-store { font-size: 10px; padding: 3px 6px; border-radius: 999px; font-weight: 800; border: 2px solid var(--ink); }
+  .shop-store.amazon { background: #FF9900; }
+  .shop-store.myntra { background: #FF3F6C; color: var(--cream); }
+  .shop-store.shein { background: var(--ink); color: var(--yellow); }
+  .shop-store.flipkart { background: #2874F0; color: var(--cream); }
+
+  /* INSIGHTS */
+  .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--cream); border: 3px solid var(--ink); border-radius: 18px; box-shadow: var(--shadow); padding: 18px; }
+  .stat-card.pink { background: var(--pink); color: var(--cream); }
+  .stat-card.yellow { background: var(--yellow); }
+  .stat-card.aqua { background: var(--aqua); }
+  .stat-card.lime { background: var(--lime); }
+  .stat-num { font-family: 'Lilita One'; font-size: 44px; line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-weight: 700; font-size: 14px; }
+
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  @media (max-width: 768px) { .charts-row { grid-template-columns: 1fr; } }
+  .chart-box { background: var(--cream); border: 3px solid var(--ink); border-radius: 18px; box-shadow: var(--shadow); padding: 20px; }
+  .chart-box h4 { margin-bottom: 16px; font-size: 18px; }
+  .bar { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; font-weight: 700; }
+  .bar-label { width: 90px; }
+  .bar-track { flex: 1; height: 22px; background: var(--ink); border-radius: 999px; position: relative; overflow: hidden; border: 2px solid var(--ink); }
+  .bar-fill { height: 100%; background: var(--pink); border-radius: 999px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; color: var(--cream); font-size: 11px; }
+  .bar:nth-child(1) .bar-fill { background: var(--pink); }
+  .bar:nth-child(2) .bar-fill { background: var(--yellow); color: var(--ink); }
+  .bar:nth-child(3) .bar-fill { background: var(--aqua); color: var(--ink); }
+  .bar:nth-child(4) .bar-fill { background: var(--lime); color: var(--ink); }
+  .bar:nth-child(5) .bar-fill { background: #C77DFF; color: var(--cream); }
+
+  .donut-wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .donut { width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(var(--pink) 0% 30%, var(--yellow) 30% 50%, var(--aqua) 50% 70%, var(--lime) 70% 82%, var(--ink) 82% 92%, #C77DFF 92% 100%); border: 3px solid var(--ink); position: relative; }
+  .donut::after { content: ''; position: absolute; inset: 28px; background: var(--cream); border-radius: 50%; border: 3px solid var(--ink); }
+  .legend { flex: 1; min-width: 140px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 4px; border: 2px solid var(--ink); }
+
+  .ai-summary { background: var(--ink); color: var(--cream); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-lg); }
+  .ai-summary h4 { color: var(--lime); font-size: 20px; margin-bottom: 12px; }
+  .ai-summary p { line-height: 1.6; margin-bottom: 8px; }
+  .ai-summary strong { color: var(--yellow); }
+
+  /* COMMUNITY */
+  .feed { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .post {
+    background: var(--cream); border: 3px solid var(--ink); border-radius: 20px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .post-img {
+    aspect-ratio: 1; background: var(--aqua); overflow: hidden;
+    border-bottom: 3px solid var(--ink);
+  }
+  .post-img img { width: 100%; height: 100%; object-fit: cover; }
+  .post-body { padding: 14px; }
+  .post-user { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .post-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--pink); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--cream); border: 2px solid var(--ink); font-size: 14px; }
+  .post-handle { font-weight: 800; font-size: 14px; }
+  .post-style { font-size: 11px; padding: 2px 8px; background: var(--yellow); border-radius: 999px; border: 2px solid var(--ink); font-weight: 800; }
+  .post-actions { display: flex; gap: 12px; margin-top: 10px; }
+  .post-action { font-size: 13px; font-weight: 800; padding: 4px 10px; border: 2px solid var(--ink); border-radius: 999px; background: var(--cream); }
+  .post-action.fire { background: var(--pink); color: var(--cream); }
+  .post-action:hover { background: var(--lime); }
+
+  /* PRICING */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+  @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .price-card { background: var(--cream); border: 4px solid var(--ink); border-radius: 24px; box-shadow: var(--shadow-lg); padding: 28px; position: relative; }
+  .price-card.featured { background: var(--pink); color: var(--cream); transform: scale(1.03); }
+  .price-card.featured .price-amt { color: var(--yellow); }
+  .badge { position: absolute; top: -14px; right: 20px; background: var(--yellow); color: var(--ink); padding: 6px 14px; border-radius: 999px; border: 3px solid var(--ink); font-weight: 800; font-size: 12px; }
+  .badge.save { background: var(--lime); }
+  .price-name { font-family: 'Lilita One'; font-size: 28px; margin-bottom: 6px; }
+  .price-amt { font-family: 'Lilita One'; font-size: 48px; line-height: 1; margin-bottom: 4px; }
+  .price-amt small { font-size: 16px; opacity: 0.8; }
+  .price-sub { font-size: 13px; font-weight: 600; opacity: 0.85; margin-bottom: 16px; }
+  .price-features { list-style: none; margin-bottom: 20px; }
+  .price-features li { padding: 6px 0; font-size: 14px; font-weight: 600; display: flex; align-items: flex-start; gap: 8px; }
+  .price-features li::before { content: '✓'; font-weight: 800; }
+  .price-card.featured .price-features li::before { color: var(--yellow); }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: var(--lime); padding: 14px 24px;
+    border-radius: 999px; border: 3px solid var(--lime);
+    font-weight: 800; box-shadow: var(--shadow-lg); z-index: 300;
+    opacity: 0; pointer-events: none; transition: 0.3s;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+
+  @media (max-width: 768px) {
+    .nav-links { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+    .nav-btn { white-space: nowrap; flex-shrink: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">mismatched</div>
+  <div class="nav-links" id="navLinks">
+    <button class="nav-btn active" data-page="landing">Home</button>
+    <button class="nav-btn" data-page="wardrobe">Wardrobe</button>
+    <button class="nav-btn" data-page="generator">Generator</button>
+    <button class="nav-btn" data-page="shop">Shop</button>
+    <button class="nav-btn" data-page="insights">Insights</button>
+    <button class="nav-btn" data-page="community">Community</button>
+    <button class="nav-btn" data-page="pricing">Pricing</button>
+  </div>
+  <button class="nav-cta" data-page="auth">Sign In</button>
+</nav>
+
+<!-- LANDING -->
+<section class="page active" id="landing">
+  <div class="hero">
+    <div class="hero-text">
+      <h1><span class="word1">Dress</span> <span class="word2">loud.</span><br>Live <span class="word3">mismatched.</span></h1>
+      <p>Snap your closet, mix it with the internet, and let AI build outfits that hit. Streetwear, Y2K, coquette, clean girl — your fits, your rules. ✨</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" data-page="wardrobe">Snap My Closet 📸</button>
+        <button class="btn-secondary" data-page="generator">Try Generator</button>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="fit-card c1">
+        <div class="fit-img"><img src="https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400" alt="Y2K"></div>
+        <span class="fit-tag">Y2K</span>
+        <div style="font-weight:800;font-size:12px;">Baby tee + cargo</div>
+      </div>
+      <div class="fit-card c2">
+        <div class="fit-img"><img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=400" alt="Coquette"></div>
+        <span class="fit-tag">Coquette</span>
+        <div style="font-weight:800;font-size:12px;">Bow + satin mini</div>
+      </div>
+      <div class="fit-card c3">
+        <div class="fit-img"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt="Street"></div>
+        <span class="fit-tag">Street</span>
+        <div style="font-weight:800;font-size:12px;">Bomber + chunkies</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-num">120K+</div><div class="metric-label">Fits Generated</div></div>
+    <div class="metric"><div class="metric-num">4</div><div class="metric-label">Stores Searched</div></div>
+    <div class="metric"><div class="metric-num">7</div><div class="metric-label">Style Aesthetics</div></div>
+    <div class="metric"><div class="metric-num">98%</div><div class="metric-label">Loved Their Fit</div></div>
+  </div>
+
+  <div class="features">
+    <h2 class="section-title">Built for the <em>main character.</em></h2>
+    <div class="feature-grid">
+      <div class="feature"><div class="feature-icon">📸</div><h3>Closet Camera</h3><p>Snap each piece. AI auto-tags color, fabric, vibe, and category in seconds.</p></div>
+      <div class="feature"><div class="feature-icon">🤖</div><h3>AI Generator</h3><p>Pick a vibe + occasion. Get full outfits remixing your closet with new finds.</p></div>
+      <div class="feature"><div class="feature-icon">🛍️</div><h3>4-Store Search</h3><p>Amazon, Myntra, Shein, Flipkart — one search, every store, best price wins.</p></div>
+      <div class="feature"><div class="feature-icon">📊</div><h3>Style DNA</h3><p>See your aesthetic, palette, and signature pieces in a visual dashboard.</p></div>
+      <div class="feature"><div class="feature-icon">🌈</div><h3>Vibe Filters</h3><p>Streetwear, coquette, balletcore, grunge — match your mood every day.</p></div>
+      <div class="feature"><div class="feature-icon">🔥</div><h3>Fit Battles</h3><p>Drop your OOTD, vote on others, climb the weekly mismatched leaderboard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH -->
+<section class="page" id="auth">
+  <div class="auth-wrap">
+    <h2 class="display" style="font-size: 32px; text-align: center; margin-bottom: 8px;">Welcome back ✨</h2>
+    <p style="text-align: center; font-size: 14px; margin-bottom: 20px; opacity: 0.8;">Your closet is waiting.</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Login</button>
+      <button class="auth-tab" data-tab="signup">Sign Up</button>
+    </div>
+    <div id="loginForm">
+      <div class="field"><label>Email</label><input type="email" placeholder="you@vibes.com"></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="••••••••"></div>
+      <button class="btn-primary auth-btn" onclick="showToast('Logged in! 🎉'); goTo('wardrobe')">Login</button>
+      <div class="divider">— OR CONTINUE WITH —</div>
+      <div class="social-row">
+        <button class="social-btn">🔵 Google</button>
+        <button class="social-btn">⚫ Apple</button>
+      </div>
+    </div>
+    <div id="signupForm" style="display:none;">
+      <div class="field"><label>Username</label><input type="text" placeholder="@maincharacter"></div>
+      <div class="field"><label>Email</label><input type="email" placeholder="you@vibes.com"></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="••••••••"></div>
+      <button class="btn-primary auth-btn" onclick="showToast('Account created! 🎉'); goTo('wardrobe')">Create Account</button>
+    </div>
+  </div>
+</section>
+
+<!-- WARDROBE -->
+<section class="page" id="wardrobe">
+  <div class="toolbar">
+    <h2 class="display">My Closet 👗</h2>
+    <button class="btn-primary" onclick="openCamera()">📸 Snap Item</button>
+    <button class="btn-secondary" onclick="openUpload()">📤 Upload</button>
+  </div>
+  <div class="filter-chips" id="wardrobeFilters">
+    <button class="chip active" data-cat="all">All</button>
+    <button class="chip" data-cat="tops">👕 Tops</button>
+    <button class="chip" data-cat="bottoms">👖 Bottoms</button>
+    <button class="chip" data-cat="dresses">👗 Dresses</button>
+    <button class="chip" data-cat="outerwear">🧥 Outerwear</button>
+    <button class="chip" data-cat="shoes">👟 Shoes</button>
+    <button class="chip" data-cat="accessories">👜 Accessories</button>
+  </div>
+  <div class="wardrobe-grid" id="wardrobeGrid"></div>
+</section>
+
+<!-- GENERATOR -->
+<section class="page" id="generator">
+  <h2 class="display" style="font-size:36px; margin-bottom:8px;">Outfit Generator 🎰</h2>
+  <p style="margin-bottom:20px; font-weight:500;">Pick a vibe, set the scene, hit generate.</p>
+
+  <div class="gen-controls">
+    <div class="control-block">
+      <h4>Source</h4>
+      <div class="filter-chips">
+        <button class="chip active" data-source="closet">My Closet</button>
+        <button class="chip" data-source="mix">Mix Both</button>
+        <button class="chip" data-source="new">New Only</button>
+      </div>
+      <h4 style="margin-top:14px;">Style</h4>
+      <div class="filter-chips" id="styleChips">
+        <button class="chip active" data-style="streetwear">Streetwear</button>
+        <button class="chip" data-style="y2k">Y2K</button>
+        <button class="chip" data-style="coquette">Coquette</button>
+        <button class="chip" data-style="cleangirl">Clean Girl</button>
+        <button class="chip" data-style="balletcore">Balletcore</button>
+        <button class="chip" data-style="minimal">Minimal</button>
+        <button class="chip" data-style="grunge">Grunge</button>
+      </div>
+    </div>
+    <div class="control-block">
+      <h4>Occasion</h4>
+      <div class="filter-chips" id="occasionChips">
+        <button class="chip active" data-occ="campus">📚 Campus</button>
+        <button class="chip" data-occ="party">🎉 Party</button>
+        <button class="chip" data-occ="shoot">📸 Shoot</button>
+        <button class="chip" data-occ="travel">✈️ Travel</button>
+        <button class="chip" data-occ="weekend">🌴 Weekend</button>
+      </div>
+      <h4 style="margin-top:14px;">Weather</h4>
+      <div class="filter-chips" id="weatherChips">
+        <button class="chip active" data-wea="warm">☀️ Warm</button>
+        <button class="chip" data-wea="breezy">🌬️ Breezy</button>
+        <button class="chip" data-wea="rainy">🌧️ Rainy</button>
+        <button class="chip" data-wea="cold">❄️ Cold</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-bottom:24px;">
+    <button class="btn-primary" style="font-size:18px; padding:16px 32px;" onclick="generateOutfit()">✨ Generate Fit</button>
+  </div>
+
+  <div class="outfit-display" id="outfitDisplay">
+    <h3 id="outfitTitle">Your Streetwear Campus Fit ☀️</h3>
+    <div class="outfit-pieces" id="outfitPieces"></div>
+    <div class="outfit-actions">
+      <button class="btn-primary" onclick="generateOutfit()">🔄 Regenerate</button>
+      <button class="btn-secondary" onclick="showToast('Outfit saved! 💾')">💾 Save Fit</button>
+      <button class="btn-secondary" onclick="goTo('shop')">🛍️ Shop Pieces</button>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="page" id="shop">
+  <h2 class="display" style="font-size:36px; margin-bottom:8px;">Shop Hub 🛍️</h2>
+  <p style="margin-bottom:20px; font-weight:500;">One search. Four stores. Best fits win.</p>
+  <div class="search-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 'cargo pants', 'baby tee'..." value="cargo pants">
+    <button class="btn-primary" onclick="renderShop()">Search</button>
+  </div>
+  <div class="store-tabs">
+    <button class="store-tab all active" data-store="all">All Stores</button>
+    <button class="store-tab amazon" data-store="amazon">Amazon</button>
+    <button class="store-tab myntra" data-store="myntra">Myntra</button>
+    <button class="store-tab shein" data-store="shein">Shein</button>
+    <button class="store-tab flipkart" data-store="flipkart">Flipkart</button>
+  </div>
+  <div class="shop-grid" id="shopGrid"></div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="page" id="insights">
+  <h2 class="display" style="font-size:36px; margin-bottom:8px;">Style DNA 🧬</h2>
+  <p style="margin-bottom:20px; font-weight:500;">Everything your closet says about you.</p>
+
+  <div class="insight-grid">
+    <div class="stat-card pink"><div class="stat-num">42</div><div class="stat-label">Wardrobe Items</div></div>
+    <div class="stat-card yellow"><div class="stat-num">18</div><div class="stat-label">Saved Outfits</div></div>
+    <div class="stat-card aqua"><div class="stat-num">Y2K</div><div class="stat-label">Top Style</div></div>
+    <div class="stat-card lime"><div class="stat-num">87%</div><div class="stat-label">Versatility</div></div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-box">
+      <h4>Style Breakdown</h4>
+      <div class="bar"><span class="bar-label">Y2K</span><div class="bar-track"><div class="bar-fill" style="width:85%">85%</div></div></div>
+      <div class="bar"><span class="bar-label">Streetwear</span><div class="bar-track"><div class="bar-fill" style="width:70%">70%</div></div></div>
+      <div class="bar"><span class="bar-label">Coquette</span><div class="bar-track"><div class="bar-fill" style="width:55%">55%</div></div></div>
+      <div class="bar"><span class="bar-label">Clean Girl</span><div class="bar-track"><div class="bar-fill" style="width:40%">40%</div></div></div>
+      <div class="bar"><span class="bar-label">Grunge</span><div class="bar-track"><div class="bar-fill" style="width:25%">25%</div></div></div>
+    </div>
+    <div class="chart-box">
+      <h4>Color Palette</h4>
+      <div class="donut-wrap">
+        <div class="donut"></div>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>Hot Pink 30%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--yellow)"></span>Sun Yellow 20%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--aqua)"></span>Aqua 20%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--lime)"></span>Lime 12%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--ink)"></span>Black 10%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#C77DFF"></span>Lavender 8%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ai-summary">
+    <h4>🤖 AI Style Summary</h4>
+    <p>Your primary aesthetic is <strong>Y2K-meets-streetwear</strong> with playful coquette accents. Signature colors lean toward <strong>hot pink, aqua, and yellow</strong> — high-saturation, attention-loving palette.</p>
+    <p>You dress for <strong>campus and weekend</strong> the most, leaning <strong>warm-weather</strong> fits. Average outfit cost is <strong>₹2,400</strong>, putting you in the smart-spend tier.</p>
+    <p style="margin-top:12px;">📈 Trend prediction: <strong>Balletcore + cargo hybrid</strong> is your next sweet spot. Try it.</p>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="page" id="community">
+  <div class="toolbar">
+    <h2 class="display">Fit Feed 🔥</h2>
+    <button class="btn-primary" onclick="showToast('Post your OOTD! 📸')">+ Post OOTD</button>
+  </div>
+  <div class="filter-chips">
+    <button class="chip active">🔥 Trending</button>
+    <button class="chip">⚡ Fresh</button>
+    <button class="chip">⚔️ Fit Battles</button>
+    <button class="chip">👑 Top Rated</button>
+  </div>
+  <div class="feed" id="feed"></div>
+</section>
+
+<!-- PRICING -->
+<section class="page" id="pricing">
+  <h2 class="display" style="font-size:36px; text-align:center;">Pick your <em style="background:var(--pink);color:var(--cream);padding:0 10px;font-style:normal;">glow up.</em></h2>
+  <p style="text-align:center; margin-top:8px; font-weight:500;">Start free. Upgrade when your closet demands it.</p>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Starter</div>
+      <div class="price-amt">₹0</div>
+      <div class="price-sub">Forever free</div>
+      <ul class="price-features">
+        <li>3 daily outfit generations</li>
+        <li>10 wardrobe items</li>
+        <li>Basic shop search</li>
+        <li>Community feed access</li>
+      </ul>
+      <button class="btn-secondary" style="width:100%;">Stay Free</button>
+    </div>
+
+    <div class="price-card featured">
+      <div class="badge">🔥 POPULAR</div>
+      <div class="price-name">Glow Up Monthly</div>
+      <div class="price-amt">₹299<small>/mo</small></div>
+      <div class="price-sub">Cancel anytime</div>
+      <ul class="price-features">
+        <li>Unlimited outfit generations</li>
+        <li>Unlimited wardrobe items</li>
+        <li>4-store advanced search</li>
+        <li>Style DNA insights</li>
+        <li>Save unlimited outfits</li>
+        <li>Priority AI processing</li>
+      </ul>
+      <button class="btn-primary" style="width:100%; background:var(--yellow); color:var(--ink);" onclick="showToast('Welcome to Glow Up! ✨')">Upgrade Monthly</button>
+    </div>
+
+    <div class="price-card">
+      <div class="badge save">SAVE 44%</div>
+      <div class="price-name">Glow Up Annual</div>
+      <div class="price-amt">₹1,999<small>/yr</small></div>
+      <div class="price-sub">~₹167/mo · Save ₹1,589</div>
+      <ul class="price-features">
+        <li>Everything in Monthly</li>
+        <li>Early access to drops</li>
+        <li>Exclusive style aesthetics</li>
+        <li>Priority customer support</li>
+        <li>Beta feature access</li>
+        <li>Annual style report</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;" onclick="showToast('Annual unlocked! 🎉')">Go Annual</button>
+    </div>
+  </div>
+</section>
+
+<!-- CAMERA MODAL -->
+<div class="modal-bg" id="cameraModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCamera()">✕</button>
+    <h3>📸 Snap Your Item</h3>
+    <div class="camera-view" id="cameraView">
+      <video id="video" autoplay="" playsinline="" style="display:none;"></video>
+      <div id="cameraPlaceholder">Tap "Start Camera" to begin</div>
+      <canvas id="canvas" style="display:none;"></canvas>
+    </div>
+    <div class="camera-actions">
+      <button class="btn-primary" id="startCamBtn" onclick="startCamera()">Start Camera</button>
+      <button class="btn-secondary" id="capBtn" onclick="capturePhoto()" style="display:none;">📸 Capture</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div class="modal-bg" id="uploadModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('uploadModal')">✕</button>
+    <h3>📤 Upload Item</h3>
+    <label class="upload-zone" for="fileInput">
+      <div style="font-size:50px;">📁</div>
+      <div style="font-weight:800;margin-top:8px;">Click to upload photo</div>
+      <div style="font-size:12px;font-weight:600;margin-top:4px;">PNG, JPG up to 10MB</div>
+    </label>
+    <input type="file" id="fileInput" accept="image/*" style="display:none;" onchange="handleUpload(event)">
+    <div class="field" style="margin-top:16px;">
+      <label>Item Name</label>
+      <input type="text" id="itemName" placeholder="e.g. Pink baby tee">
+    </div>
+    <div class="field">
+      <label>Category</label>
+      <select id="itemCat" style="width:100%; padding:12px 14px; border:3px solid var(--ink); border-radius:12px; font-family:inherit; font-size:15px; background:var(--cream);">
+        <option value="tops">Tops</option>
+        <option value="bottoms">Bottoms</option>
+        <option value="dresses">Dresses</option>
+        <option value="outerwear">Outerwear</option>
+        <option value="shoes">Shoes</option>
+        <option value="accessories">Accessories</option>
+      </select>
+    </div>
+    <button class="btn-primary auth-btn" onclick="addUploadedItem()">Add to Closet</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Saved! ✨</div>
+
+<script>
+  // ===== Navigation =====
+  const pages = document.querySelectorAll('.page');
+  const navBtns = document.querySelectorAll('[data-page]');
+  function goTo(id) {
+    pages.forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const btn = document.querySelector(`.nav-btn[data-page="${id}"]`);
+    if (btn) btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  navBtns.forEach(b => b.addEventListener('click', () => goTo(b.dataset.page)));
+
+  // ===== Auth tabs =====
+  document.querySelectorAll('.auth-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.auth-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      const isLogin = t.dataset.tab === 'login';
+      document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
+      document.getElementById('signupForm').style.display = isLogin ? 'none' : 'block';
+    });
+  });
+
+  // ===== Toast =====
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // ===== Wardrobe (with real product photos) =====
+  const wardrobeItems = [
+    { name: 'Pink baby tee', cat: 'tops', img: 'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400', tags: ['Y2K', 'Pink'] },
+    { name: 'Cargo mini', cat: 'bottoms', img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400', tags: ['Street', 'Khaki'] },
+    { name: 'Satin slip', cat: 'dresses', img: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=400', tags: ['Coquette', 'Black'] },
+    { name: 'Bomber jacket', cat: 'outerwear', img: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400', tags: ['Street', 'Olive'] },
+    { name: 'Chunky sneakers', cat: 'shoes', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400', tags: ['Street', 'White'] },
+    { name: 'Mary Janes', cat: 'shoes', img: 'https://images.unsplash.com/photo-1573100925118-870b8efc799d?w=400', tags: ['Coquette', 'Black'] },
+    { name: 'Bow cardigan', cat: 'tops', img: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400', tags: ['Coquette', 'Cream'] },
+    { name: 'Wide trousers', cat: 'bottoms', img: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400', tags: ['Clean', 'Beige'] },
+    { name: 'Tulle midi', cat: 'dresses', img: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400', tags: ['Ballet', 'Pink'] },
+    { name: 'Plaid flannel', cat: 'outerwear', img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400', tags: ['Grunge', 'Red'] },
+    { name: 'Gold hoops', cat: 'accessories', img: 'https://images.unsplash.com/photo-1635767582909-345b8eea4d24?w=400', tags: ['Minimal', 'Gold'] },
+    { name: 'Mini bag', cat: 'accessories', img: 'https://images.unsplash.com/photo-1591561954557-26941169b49e?w=400', tags: ['Y2K', 'Pink'] },
+  ];
+  let activeCat = 'all';
+  function renderWardrobe() {
+    const grid = document.getElementById('wardrobeGrid');
+    grid.innerHTML = '';
+    const items = activeCat === 'all' ? wardrobeItems : wardrobeItems.filter(i => i.cat === activeCat);
+    items.forEach(it => {
+      const el = document.createElement('div');
+      el.className = 'wardrobe-item';
+      el.innerHTML = `
+        <div class="item-img"><img src="${it.img}" alt="${it.name}"></div>
+        <div class="item-name">${it.name}</div>
+        <div class="item-tags">${it.tags.map(t => `<span class="item-tag">${t}</span>`).join('')}</div>
+      `;
+      grid.appendChild(el);
+    });
+    const add = document.createElement('div');
+    add.className = 'add-item';
+    add.onclick = openCamera;
+    add.innerHTML = `<div class="add-item-icon">+</div><div>Add Item</div>`;
+    grid.appendChild(add);
+  }
+  document.querySelectorAll('#wardrobeFilters .chip').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('#wardrobeFilters .chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      activeCat = c.dataset.cat;
+      renderWardrobe();
+    });
+  });
+  renderWardrobe();
+
+  // ===== Camera =====
+  let stream = null;
+  function openCamera() { document.getElementById('cameraModal').classList.add('active'); }
+  function closeCamera() {
+    if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+    document.getElementById('video').style.display = 'none';
+    document.getElementById('cameraPlaceholder').style.display = 'block';
+    document.getElementById('startCamBtn').style.display = 'inline-block';
+    document.getElementById('capBtn').style.display = 'none';
+    document.getElementById('cameraModal').classList.remove('active');
+  }
+  async function startCamera() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      const v = document.getElementById('video');
+      v.srcObject = stream;
+      v.style.display = 'block';
+      document.getElementById('cameraPlaceholder').style.display = 'none';
+      document.getElementById('startCamBtn').style.display = 'none';
+      document.getElementById('capBtn').style.display = 'inline-block';
+    } catch (e) { showToast('Camera blocked 😢 Try upload instead'); }
+  }
+  function capturePhoto() {
+    const v = document.getElementById('video');
+    const c = document.getElementById('canvas');
+    c.width = v.videoWidth; c.height = v.videoHeight;
+    c.getContext('2d').drawImage(v, 0, 0);
+    const dataUrl = c.toDataURL('image/png');
+    const newItem = { name: 'Captured item', cat: 'tops', tags: ['New', 'AI-tagged'], img: dataUrl };
+    wardrobeItems.unshift(newItem);
+    renderWardrobe();
+    closeCamera();
+    showToast('Snapped & tagged! ✨');
+  }
+
+  // ===== Upload =====
+  function openUpload() { document.getElementById('uploadModal').classList.add('active'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+  let uploadedDataUrl = null;
+  function handleUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => { uploadedDataUrl = ev.target.result; showToast('Photo loaded! 📸'); };
+    reader.readAsDataURL(file);
+  }
+  function addUploadedItem() {
+    const name = document.getElementById('itemName').value || 'New item';
+    const cat = document.getElementById('itemCat').value;
+    wardrobeItems.unshift({ name, cat, tags: ['New'], img: uploadedDataUrl || 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400' });
+    document.getElementById('itemName').value = '';
+    uploadedDataUrl = null;
+    renderWardrobe();
+    closeModal('uploadModal');
+    showToast('Added to closet! 🎉');
+  }
+
+  // ===== Generator =====
+  document.querySelectorAll('.control-block .filter-chips').forEach(group => {
+    group.querySelectorAll('.chip').forEach(c => {
+      c.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+        c.classList.add('active');
       });
-    }, interval);
-    return () => clearInterval(id);
-  }, [initial, variance, interval]);
-  return val;
-};
-
-const AnimatedNumber = ({ value, decimals = 0, prefix = '', suffix = '' }) => {
-  const [display, setDisplay] = _react.useState.call(void 0, value);
-  _react.useEffect.call(void 0, () => {
-    const start = display;
-    const diff = value - start;
-    const dur = 600;
-    const t0 = performance.now();
-    let raf;
-    const tick = (now) => {
-      const p = Math.min(1, (now - t0) / dur);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setDisplay(start + diff * eased);
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [value]);
-  return _react2.default.createElement('span', null, prefix, display.toFixed(decimals), suffix);
-};
-
-// Reusable pulse dot
-const PulseDot = ({ size = 'sm', color = C.rose }) => {
-  const dim = size === 'sm' ? 'h-1.5 w-1.5' : 'h-2 w-2';
-  return (
-    _react2.default.createElement('span', { className: `relative flex ${dim}`,}
-      , _react2.default.createElement('span', { className: "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"      , style: { backgroundColor: color },} )
-      , _react2.default.createElement('span', { className: `relative inline-flex rounded-full ${dim}`, style: { backgroundColor: color },} )
-    )
-  );
-};
-
-// Animated grid background
-const GridBackdrop = () => (
-  _react2.default.createElement('div', { className: "fixed inset-0 pointer-events-none overflow-hidden"   ,}
-    , _react2.default.createElement('div', {
-      className: "absolute inset-0 opacity-40"  ,
-      style: {
-        backgroundImage: 'linear-gradient(rgba(218,182,188,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(218,182,188,0.06) 1px, transparent 1px)',
-        backgroundSize: '48px 48px',
-        maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)'
-      },}
-    )
-    , _react2.default.createElement('div', { className: "absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl"      , style: { backgroundColor: C.deep, opacity: 0.18 },} )
-    , _react2.default.createElement('div', { className: "absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl"      , style: { backgroundColor: C.rose, opacity: 0.10 },} )
-    , _react2.default.createElement('div', { className: "absolute top-1/2 right-0 w-72 h-72 rounded-full blur-3xl"      , style: { backgroundColor: C.deepDark, opacity: 0.15 },} )
-  )
-);
-
- function NaviMumbaiOS() {
-  const [booted, setBooted] = _react.useState.call(void 0, false);
-  const [bootProgress, setBootProgress] = _react.useState.call(void 0, 0);
-  const [page, setPage] = _react.useState.call(void 0, 'home');
-  const [logs, setLogs] = _react.useState.call(void 0, []);
-  const [tickets, setTickets] = _react.useState.call(void 0, []);
-  const [time, setTime] = _react.useState.call(void 0, new Date());
-  const [chatMessages, setChatMessages] = _react.useState.call(void 0, [
-    { role: 'ai', text: 'NMOS Cortex online. I have access to all civic, transport, environmental and emergency systems. How may I assist you?' }
-  ]);
-  const [chatInput, setChatInput] = _react.useState.call(void 0, '');
-  const [emergencyActive, setEmergencyActive] = _react.useState.call(void 0, null);
-  const [logCollapsed, setLogCollapsed] = _react.useState.call(void 0, false);
-  const logRef = _react.useRef.call(void 0, null);
-
-  _react.useEffect.call(void 0, () => {
-    const bootSteps = [
-      '[BIOS] POST check.................. OK',
-      '[KERNEL] Loading nmos-kernel v5.2.0',
-      '[KERNEL] Mounting civic.fs at /system',
-      '[CRYPTO] Quantum-safe handshake established',
-      '[SERVICE] routing.engine ............ online',
-      '[SERVICE] cortex.ai layer ........... online',
-      '[NETWORK] city.mesh — 247 nodes synced',
-      '[GIS] Geographic intelligence layer ready',
-      '[IOT] 1,842 sensors reporting',
-      '[OS] Navi Mumbai OS ready.'
-    ];
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < bootSteps.length) {
-        setLogs(prev => [...prev, bootSteps[i]]);
-        setBootProgress(((i + 1) / bootSteps.length) * 100);
-        i++;
-      } else {
-        clearInterval(interval);
-        setTimeout(() => setBooted(true), 500);
-      }
-    }, 240);
-    return () => clearInterval(interval);
-  }, []);
-
-  _react.useEffect.call(void 0, () => {
-    const t = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(t);
-  }, []);
-
-  _react.useEffect.call(void 0, () => {
-    if (!booted) return;
-    const chatter = [
-      '[ROUTER] heartbeat ok — 11ms',
-      '[GIS] geofence sync complete',
-      '[CORTEX] severity model delta applied',
-      '[NET] sensor cluster D-7 online',
-      '[CACHE] eviction cycle complete',
-      '[DB] indexed 1,204 new civic records',
-      '[CCTV] traffic node 89 frame analyzed',
-      '[IOT] AQ probe Vashi: PM2.5=42',
-      '[MESH] inter-dept handshake ok',
-      '[CRYPTO] private ledger block #8421 sealed',
-      '[API] /v2/citizen/auth — 200 OK'
-    ];
-    const interval = setInterval(() => {
-      setLogs(prev => [...prev.slice(-50), chatter[Math.floor(Math.random() * chatter.length)]]);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [booted]);
-
-  _react.useEffect.call(void 0, () => {
-    if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
-  }, [logs]);
-
-  function pushLog(msg) {
-    setLogs(prev => [...prev.slice(-50), msg]);
-  }
-
-  function createTicket(category, description, location) {
-    pushLog('[API] POST /v2/civic/ticket');
-    pushLog('[ROUTER] analyzing payload...');
-    setTimeout(() => {
-      const id = 'NMOS-' + Math.floor(Math.random() * 99999).toString().padStart(5, '0');
-      const deptMap = {
-        'Water Leakage': 'NMMC Water Dept',
-        'Road Damage': 'PWD Road Division',
-        'Electricity Outage': 'MSEDCL Grid',
-        'Garbage Overflow': 'Solid Waste Mgmt',
-        'Sewage Blockage': 'NMMC Sanitation',
-        'Streetlight Failure': 'Electrical Maint.',
-        'Air Pollution': 'MPCB Environmental',
-        'Flooding': 'Disaster Mgmt Cell',
-        'Tree Fall': 'Garden & Forest',
-        'Stray Animals': 'Animal Welfare'
-      };
-      pushLog(`[ROUTER] dept → ${deptMap[category]}`);
-      pushLog('[CORTEX] severity score: ' + (Math.random() * 5 + 3).toFixed(2));
-      pushLog(`[SUCCESS] ticket ${id} dispatched`);
-      const newTicket = {
-        id, category, description, location,
-        status: 'ROUTED',
-        dept: deptMap[category],
-        eta: Math.floor(Math.random() * 24 + 4) + 'h',
-        severity: ['LOW', 'MED', 'HIGH'][Math.floor(Math.random() * 3)],
-        created: new Date().toLocaleTimeString()
-      };
-      setTickets(prev => [newTicket, ...prev]);
-    }, 700);
-  }
-
-  function sendChat() {
-    if (!chatInput.trim()) return;
-    const userMsg = chatInput;
-    setChatMessages(prev => [...prev, { role: 'user', text: userMsg }]);
-    setChatInput('');
-    pushLog('[CORTEX] query received');
-    setTimeout(() => {
-      const responses = {
-        pothole: 'Routing your query: Civic → Road Damage. PWD response SLA in your zone is 2.4h. Want me to pre-fill a ticket?',
-        water: 'NMMC Water dept currently has 14h average resolution. Live leakages: 23. I can submit on your behalf.',
-        emergency: 'Emergency cortex active. 8 ambulances ready, ETA 6m. Trigger from the Emergency module or dial 112.',
-        garbage: 'Hotspots tonight: Sector 17 Vashi (severity HIGH), CBD Belapur (MED). 12 compactor units redeployed.',
-        air: 'Live AQI: 142 (Moderate). PM2.5 elevated near MIDC industrial zone. Sensitive groups should mask outdoors.',
-        traffic: 'Palm Beach Rd: 65% load. Vashi Bridge: 84% (heavy). Atal Setu clear at 45%. Recommend SH-54 alternate.',
-        privacy: 'Your data is encrypted end-to-end. Civic tickets are visible only to assigned dept node. Audit log immutable.',
-        default: 'I can help with civic issues, emergency dispatch, environment, transport, governance, transparency or privacy queries.'
-      };
-      const key = Object.keys(responses).find(k => userMsg.toLowerCase().includes(k)) || 'default';
-      setChatMessages(prev => [...prev, { role: 'ai', text: responses[key] }]);
-      pushLog('[CORTEX] response synthesized');
-    }, 600);
-  }
-
-  function triggerEmergency(type) {
-    setEmergencyActive(type);
-    pushLog(`[EMERGENCY] ${type.toUpperCase()} dispatch`);
-    pushLog('[ROUTER] nearest unit: 1.2km away');
-    pushLog('[ETA] arrival ~6 minutes');
-    setTimeout(() => setEmergencyActive(null), 5000);
-  }
-
-  // ───── BOOT ─────
-  if (!booted) {
-    return (
-      _react2.default.createElement('div', { className: "min-h-screen font-mono p-6 flex flex-col relative overflow-hidden"      , style: { backgroundColor: C.bg, color: C.rose },}
-        , _react2.default.createElement(GridBackdrop, null )
-        , _react2.default.createElement('div', { className: "relative z-10 flex items-center gap-3 mb-8"     ,}
-          , _react2.default.createElement('div', { className: "relative",}
-            , _react2.default.createElement('div', { className: "absolute inset-0 blur-xl opacity-60"   , style: { backgroundColor: C.deep },} )
-            , _react2.default.createElement(_lucidereact.Cpu, { className: "w-10 h-10 relative"  , style: { color: C.rose },} )
-          )
-          , _react2.default.createElement('div', null
-            , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight"  , style: { background: `linear-gradient(90deg, ${C.rose}, ${C.deep})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' },}, "NAVI MUMBAI OS"
-
-            )
-            , _react2.default.createElement('div', { className: "text-xs tracking-widest" , style: { color: C.textSoft },}, "CIVIC OPERATING SYSTEM · v5.2.0"    )
-          )
-        )
-        , _react2.default.createElement('div', { className: "relative z-10 flex-1 space-y-1.5 text-sm"    ,}
-          , logs.map((l, i) => (
-            _react2.default.createElement(_framermotion.motion.div, { key: i, initial: { opacity: 0, x: -8 }, animate: { opacity: 1, x: 0 }, className: "flex items-center gap-2"  ,}
-              , _react2.default.createElement('span', { className: "text-xs", style: { color: C.borderSoft },}, String(i).padStart(2, '0'))
-              , _react2.default.createElement('span', { style: { color: l.includes('OK') || l.includes('online') || l.includes('ready') ? C.rose : C.textMuted },}, l)
-            )
-          ))
-        )
-        , _react2.default.createElement('div', { className: "relative z-10 mt-6"  ,}
-          , _react2.default.createElement('div', { className: "w-full h-1 rounded-full overflow-hidden"   , style: { backgroundColor: C.borderSoft },}
-            , _react2.default.createElement(_framermotion.motion.div, {
-              className: "h-full",
-              style: { background: `linear-gradient(90deg, ${C.deep}, ${C.rose}, ${C.deep})` },
-              initial: { width: 0 },
-              animate: { width: `${bootProgress}%` },
-              transition: { duration: 0.3 },}
-            )
-          )
-          , _react2.default.createElement('div', { className: "flex justify-between text-xs mt-2 tracking-wider"    , style: { color: C.textSoft },}
-            , _react2.default.createElement('span', null, "BOOTING KERNEL" )
-            , _react2.default.createElement('span', null, Math.floor(bootProgress), "%")
-          )
-        )
-      )
-    );
-  }
-
-  const navItems = [
-    { id: 'home', label: 'Home', icon: _lucidereact.Home },
-    { id: 'civic', label: 'Civic', icon: _lucidereact.FileCheck },
-    { id: 'emergency', label: 'Emergency', icon: _lucidereact.AlertTriangle },
-    { id: 'dashboard', label: 'Intel', icon: _lucidereact.BarChart3 },
-    { id: 'ai', label: 'Cortex', icon: _lucidereact.Bot },
-    { id: 'community', label: 'Community', icon: _lucidereact.Users },
-    { id: 'transparency', label: 'Ledger', icon: _lucidereact.Eye },
-    { id: 'governance', label: 'Governance', icon: _lucidereact.Building2 },
-    { id: 'environment', label: 'Environment', icon: _lucidereact.Leaf },
-    { id: 'transport', label: 'Transport', icon: _lucidereact.Bus },
-    { id: 'tourism', label: 'Tourism', icon: _lucidereact.Mountain },
-    { id: 'privacy', label: 'Privacy', icon: _lucidereact.Lock }
-  ];
-
-  return (
-    _react2.default.createElement('div', { className: "min-h-screen font-sans relative"  , style: { backgroundColor: C.bg, color: C.rose },}
-      , _react2.default.createElement(GridBackdrop, null )
-
-      /* TOP STATUS BAR */
-      , _react2.default.createElement('div', { className: "backdrop-blur border-b px-4 py-2.5 flex items-center justify-between text-xs sticky top-0 z-50"          ,
-           style: { backgroundColor: 'rgba(26,16,20,0.85)', borderColor: C.border },}
-        , _react2.default.createElement('div', { className: "flex items-center gap-4"  ,}
-          , _react2.default.createElement('div', { className: "flex items-center gap-2"  ,}
-            , _react2.default.createElement('div', { className: "relative",}
-              , _react2.default.createElement('div', { className: "absolute inset-0 blur opacity-70"   , style: { backgroundColor: C.deep },} )
-              , _react2.default.createElement(_lucidereact.Cpu, { className: "w-4 h-4 relative"  , style: { color: C.rose },} )
-            )
-            , _react2.default.createElement('span', { className: "font-bold tracking-tight" , style: { background: `linear-gradient(90deg, ${C.rose}, ${C.deep})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' },}, "NMOS")
-            , _react2.default.createElement('span', { className: "font-mono", style: { color: C.textSoft },}, "v5.2.0")
-          )
-          , _react2.default.createElement('div', { className: "hidden md:flex items-center gap-1.5"   , style: { color: C.rose },}
-            , _react2.default.createElement(PulseDot, { color: C.rose,} )
-            , _react2.default.createElement('span', { className: "tracking-wider",}, "KERNEL ONLINE" )
-          )
-        )
-        , _react2.default.createElement('div', { className: "flex items-center gap-3"  , style: { color: C.textMuted },}
-          , _react2.default.createElement('span', { className: "hidden md:flex items-center gap-1"   ,}, _react2.default.createElement(_lucidereact.Network, { className: "w-3 h-3" ,} ), " 247" )
-          , _react2.default.createElement('span', { className: "hidden md:flex items-center gap-1"   ,}, _react2.default.createElement(_lucidereact.Signal, { className: "w-3 h-3" ,} ), " 11ms" )
-          , _react2.default.createElement('span', { className: "hidden sm:flex items-center gap-1"   ,}, _react2.default.createElement(_lucidereact.Lock, { className: "w-3 h-3" , style: { color: C.rose },} ), " SECURE" )
-          , _react2.default.createElement('span', { className: "font-mono", style: { color: C.rose },}, time.toLocaleTimeString())
-        )
-      )
-
-      /* NAV */
-      , _react2.default.createElement('div', { className: "backdrop-blur border-b sticky z-40"   ,
-           style: { backgroundColor: 'rgba(26,16,20,0.75)', borderColor: C.border, top: 41 },}
-        , _react2.default.createElement('div', { className: "flex overflow-x-auto px-2 py-2 gap-1 max-w-7xl mx-auto"      ,}
-          , navItems.map(item => {
-            const Icon = item.icon;
-            const active = page === item.id;
-            return (
-              _react2.default.createElement('button', {
-                key: item.id,
-                onClick: () => setPage(item.id),
-                className: "relative flex items-center gap-2 px-3 py-2 rounded-lg text-xs whitespace-nowrap transition-all font-medium"          ,
-                style: {
-                  color: active ? '#fff' : C.textMuted
-                },
-                onMouseEnter: e => { if (!active) e.currentTarget.style.color = '#fff'; },
-                onMouseLeave: e => { if (!active) e.currentTarget.style.color = C.textMuted; },}
-
-                , active && (
-                  _react2.default.createElement(_framermotion.motion.div, {
-                    layoutId: "navActive",
-                    className: "absolute inset-0 rounded-lg shadow-lg"   ,
-                    style: { background: `linear-gradient(90deg, ${C.deep}, ${C.deepDark})` },
-                    transition: { type: 'spring', stiffness: 400, damping: 30 },}
-                  )
-                )
-                , _react2.default.createElement(Icon, { className: "w-3.5 h-3.5 relative"  ,} )
-                , _react2.default.createElement('span', { className: "relative tracking-wide" ,}, item.label)
-              )
-            );
-          })
-        )
-      )
-
-      /* MAIN CONTENT */
-      , _react2.default.createElement('div', { className: `p-4 md:p-8 max-w-7xl mx-auto relative z-10 ${logCollapsed ? 'pb-24' : 'pb-72'}`,}
-        , _react2.default.createElement(_framermotion.AnimatePresence, { mode: "wait",}
-          , _react2.default.createElement(_framermotion.motion.div, {
-            key: page,
-            initial: { opacity: 0, y: 12 },
-            animate: { opacity: 1, y: 0 },
-            exit: { opacity: 0, y: -8 },
-            transition: { duration: 0.25, ease: 'easeOut' },}
-
-            , page === 'home' && _react2.default.createElement(HomeView, { setPage: setPage,} )
-            , page === 'civic' && _react2.default.createElement(CivicView, { createTicket: createTicket, tickets: tickets,} )
-            , page === 'emergency' && _react2.default.createElement(EmergencyView, { triggerEmergency: triggerEmergency, active: emergencyActive,} )
-            , page === 'dashboard' && _react2.default.createElement(DashboardView, null )
-            , page === 'ai' && _react2.default.createElement(AIView, { messages: chatMessages, input: chatInput, setInput: setChatInput, send: sendChat,} )
-            , page === 'community' && _react2.default.createElement(CommunityView, { pushLog: pushLog,} )
-            , page === 'transparency' && _react2.default.createElement(TransparencyView, null )
-            , page === 'governance' && _react2.default.createElement(GovernanceView, null )
-            , page === 'environment' && _react2.default.createElement(EnvironmentView, null )
-            , page === 'transport' && _react2.default.createElement(TransportView, null )
-            , page === 'tourism' && _react2.default.createElement(TourismView, null )
-            , page === 'privacy' && _react2.default.createElement(PrivacyView, null )
-          )
-        )
-      )
-
-      /* EMERGENCY OVERLAY */
-      , _react2.default.createElement(_framermotion.AnimatePresence, null
-        , emergencyActive && (
-          _react2.default.createElement(_framermotion.motion.div, {
-            initial: { opacity: 0 },
-            animate: { opacity: 1 },
-            exit: { opacity: 0 },
-            className: "fixed inset-0 backdrop-blur z-50 flex items-center justify-center p-4"       ,
-            style: { backgroundColor: 'rgba(0,0,0,0.85)' },}
-
-            , _react2.default.createElement(_framermotion.motion.div, {
-              initial: { scale: 0.85, y: 20 },
-              animate: { scale: 1, y: 0 },
-              exit: { scale: 0.85, y: 20 },
-              className: "rounded-2xl p-8 max-w-md text-center shadow-2xl relative overflow-hidden border"       ,
-              style: { background: `linear-gradient(135deg, ${C.deepDarker}, ${C.bg})`, borderColor: C.deep },}
-
-              , _react2.default.createElement('div', { className: "absolute inset-0 blur-3xl"  , style: { backgroundColor: C.deep, opacity: 0.18 },} )
-              , _react2.default.createElement(_framermotion.motion.div, {
-                animate: { scale: [1, 1.15, 1] },
-                transition: { duration: 1.2, repeat: Infinity },
-                className: "relative",}
-
-                , _react2.default.createElement(_lucidereact.AlertTriangle, { className: "w-20 h-20 mx-auto"  , style: { color: C.rose },} )
-              )
-              , _react2.default.createElement('h2', { className: "text-2xl font-bold mt-4 tracking-tight relative"    , style: { color: C.rose },}, emergencyActive.toUpperCase(), " DISPATCHED" )
-              , _react2.default.createElement('p', { className: "mt-2 relative" , style: { color: C.textMuted },}, "Unit en route · ETA "     , _react2.default.createElement('span', { className: "font-bold text-white" ,}, "6 minutes" ))
-              , _react2.default.createElement('div', { className: "mt-4 flex items-center justify-center gap-2 text-xs relative"      , style: { color: C.textSoft },}
-                , _react2.default.createElement(PulseDot, { color: C.rose,} ), "LIVE TRACKING ACTIVE"
-
-              )
-            )
-          )
-        )
-      )
-
-      /* KERNEL LOG */
-      , _react2.default.createElement('div', { className: "fixed bottom-0 left-0 right-0 backdrop-blur border-t z-40"      ,
-           style: { backgroundColor: 'rgba(26,16,20,0.95)', borderColor: C.border },}
-        , _react2.default.createElement('div', { className: "px-4 py-2 flex items-center justify-between border-b"     , style: { borderColor: C.border },}
-          , _react2.default.createElement('div', { className: "flex items-center gap-2 text-xs"   ,}
-            , _react2.default.createElement(_lucidereact.Terminal, { className: "w-4 h-4" , style: { color: C.rose },} )
-            , _react2.default.createElement('span', { className: "font-bold tracking-wide font-mono"  , style: { color: C.rose },}, "KERNEL LOG" )
-            , _react2.default.createElement('span', { className: "hidden sm:inline font-mono"  , style: { color: C.textSoft },}, "/var/log/nmos.kernel")
-          )
-          , _react2.default.createElement('div', { className: "flex items-center gap-3 text-xs"   ,}
-            , _react2.default.createElement('div', { className: "flex items-center gap-1.5"  , style: { color: C.rose },}
-              , _react2.default.createElement(PulseDot, { color: C.rose,} )
-              , _react2.default.createElement('span', { className: "font-mono tracking-wider" ,}, "STREAMING")
-            )
-            , _react2.default.createElement('button', {
-              onClick: () => setLogCollapsed(!logCollapsed),
-              className: "text-xs px-2 py-0.5 rounded border transition-colors"     ,
-              style: { color: C.textMuted, borderColor: C.border },}
-
-              , logCollapsed ? 'expand' : 'collapse'
-            )
-          )
-        )
-        , !logCollapsed && (
-          _react2.default.createElement('div', { ref: logRef, className: "h-32 overflow-y-auto px-4 py-2 text-xs space-y-0.5 font-mono"      ,}
-            , logs.map((l, i) => {
-              let color = C.textSoft;
-              if (l.includes('[SUCCESS]')) color = C.rose;
-              else if (l.includes('[EMERGENCY]') || l.includes('[ERROR]')) color = '#ff7a8a';
-              else if (l.includes('[CORTEX]') || l.includes('[AI]')) color = C.rose;
-              else if (l.includes('[ROUTER]')) color = '#e8c8ce';
-              else if (l.includes('[KERNEL]') || l.includes('[CRYPTO]')) color = '#d4a5ad';
-              else color = C.textMuted;
-              return (
-                _react2.default.createElement('div', { key: i, style: { color },}
-                  , _react2.default.createElement('span', { style: { color: C.borderSoft },}, String(i).padStart(3, '0'), " " )
-                  , l
-                )
-              );
-            })
-          )
-        )
-      )
-    )
-  );
-} exports.default = NaviMumbaiOS;
-
-// ═══════════════════════════════════════════════
-// SHARED CARD STYLE
-// ═══════════════════════════════════════════════
-const cardStyle = {
-  backgroundColor: 'rgba(36,20,25,0.55)',
-  borderColor: C.border,
-  backdropFilter: 'blur(8px)'
-};
-const innerCardStyle = {
-  backgroundColor: 'rgba(20,12,15,0.75)',
-  borderColor: C.borderSoft
-};
-
-// ═══════════════════════════════════════════════
-// HOME VIEW
-// ═══════════════════════════════════════════════
-function HomeView({ setPage }) {
-  const liveTickets = useLiveNumber(4218, 0.005, 2200);
-  const liveResolved = useLiveNumber(892, 0.02, 3000);
-  const liveNodes = useLiveNumber(247, 0.01, 4000);
-  const liveCitizens = useLiveNumber(238400, 0.002, 2800);
-
-  const layers = [
-    { id: 'civic', name: 'Civic Kernel', desc: 'AI ticket routing engine', icon: _lucidereact.FileCheck },
-    { id: 'emergency', name: 'Emergency Layer', desc: 'Dispatch & triage', icon: _lucidereact.AlertTriangle },
-    { id: 'ai', name: 'AI Cortex', desc: 'Cognitive assistant', icon: _lucidereact.Bot },
-    { id: 'dashboard', name: 'City Intel', desc: 'Live ops telemetry', icon: _lucidereact.BarChart3 },
-    { id: 'governance', name: 'Governance', desc: 'Department analytics', icon: _lucidereact.Building2 },
-    { id: 'transparency', name: 'Ledger', desc: 'Public spending trail', icon: _lucidereact.Eye },
-    { id: 'environment', name: 'Environment', desc: 'Sensor mesh & AQI', icon: _lucidereact.Leaf },
-    { id: 'transport', name: 'Transport', desc: 'Multimodal mobility', icon: _lucidereact.Bus },
-    { id: 'privacy', name: 'Privacy', desc: 'Encrypted citizen vault', icon: _lucidereact.Lock }
-  ];
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "text-center mb-12 pt-4"  ,}
-        , _react2.default.createElement(_framermotion.motion.div, {
-          initial: { opacity: 0, scale: 0.95 },
-          animate: { opacity: 1, scale: 1 },
-          transition: { duration: 0.6 },}
-
-          , _react2.default.createElement('div', { className: "inline-flex items-center gap-2 px-3 py-1 rounded-full border backdrop-blur mb-6"        ,
-               style: { borderColor: C.deep, backgroundColor: 'rgba(162,72,87,0.18)' },}
-            , _react2.default.createElement(PulseDot, { color: C.rose,} )
-            , _react2.default.createElement('span', { className: "text-xs tracking-widest font-mono"  , style: { color: C.rose },}, "CIVIC OS · LIVE"   )
-          )
-          , _react2.default.createElement('h1', { className: "text-5xl md:text-7xl font-bold tracking-tight leading-tight"    ,
-              style: { background: `linear-gradient(90deg, ${C.rose}, ${C.deep}, ${C.rose})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' },}, "Navi Mumbai OS"
-
-          )
-          , _react2.default.createElement('p', { className: "mt-4 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"     , style: { color: C.textMuted },}, "One City. One System. Infinite Coordination."
-
-            , _react2.default.createElement('span', { className: "block text-sm mt-1"  , style: { color: C.textSoft },}, "A unified civic kernel for governance, emergency, environment & citizen experience."          )
-          )
-        )
-      )
-
-      /* LIVE STATS BAR */
-      , _react2.default.createElement('div', { className: "grid grid-cols-2 md:grid-cols-4 gap-3 mb-10"    ,}
-        , [
-          { label: 'Active Tickets', val: liveTickets, icon: _lucidereact.Activity },
-          { label: 'Resolved · 24h', val: liveResolved, icon: _lucidereact.CheckCircle2 },
-          { label: 'Mesh Nodes', val: liveNodes, icon: _lucidereact.Network },
-          { label: 'Citizens Served', val: liveCitizens, icon: _lucidereact.Users }
-        ].map((s, i) => {
-          const Icon = s.icon;
-          return (
-            _react2.default.createElement(_framermotion.motion.div, {
-              key: s.label,
-              initial: { opacity: 0, y: 10 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: i * 0.05 },
-              className: "border rounded-xl p-4 transition-colors"   ,
-              style: cardStyle,}
-
-              , _react2.default.createElement('div', { className: "flex items-center justify-between mb-2"   ,}
-                , _react2.default.createElement(Icon, { className: "w-4 h-4" , style: { color: C.rose },} )
-                , _react2.default.createElement(PulseDot, { color: C.rose,} )
-              )
-              , _react2.default.createElement('div', { className: "text-2xl md:text-3xl font-bold tracking-tight"   , style: { color: C.rose },}
-                , _react2.default.createElement(AnimatedNumber, { value: s.val,} )
-              )
-              , _react2.default.createElement('div', { className: "text-xs mt-0.5 tracking-wide"  , style: { color: C.textSoft },}, s.label)
-            )
-          );
-        })
-      )
-
-      /* WHAT IS NMOS */
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-6 md:p-8 mb-10 relative overflow-hidden"      ,
-           style: { ...cardStyle, background: `linear-gradient(135deg, rgba(122,47,60,0.4), rgba(36,20,25,0.55))` },}
-        , _react2.default.createElement('div', { className: "absolute top-0 right-0 w-64 h-64 blur-3xl rounded-full"      , style: { backgroundColor: C.deep, opacity: 0.18 },} )
-        , _react2.default.createElement('div', { className: "flex items-start gap-4 relative"   ,}
-          , _react2.default.createElement('div', { className: "rounded-xl p-3 flex-shrink-0 shadow-lg"   , style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },}
-            , _react2.default.createElement(_lucidereact.Sparkles, { className: "w-6 h-6 text-white"  ,} )
-          )
-          , _react2.default.createElement('div', null
-            , _react2.default.createElement('h2', { className: "text-xl font-bold mb-2 tracking-tight text-white"    ,}, "What is NMOS?"  )
-            , _react2.default.createElement('p', { className: "leading-relaxed", style: { color: C.textMuted },}, "An "
-               , _react2.default.createElement('span', { className: "font-semibold", style: { color: C.rose },}, "end-to-end civic operating system"   ), " integrating governance, emergency response, mobility, environment, and citizen engagement under one neural backbone. Every complaint, every emergency, every datapoint — orchestrated by an AI cortex with privacy-first architecture and a public, auditable ledger."
-            )
-          )
-        )
-      )
-
-      , _react2.default.createElement(CityMapVisual, null )
-
-      , _react2.default.createElement('h3', { className: "text-xs tracking-widest font-mono mb-4 mt-10"    , style: { color: C.textSoft },}, "// SYSTEM MODULES"  )
-      , _react2.default.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"    ,}
-        , layers.map((layer, i) => {
-          const Icon = layer.icon;
-          return (
-            _react2.default.createElement(_framermotion.motion.button, {
-              key: layer.id,
-              initial: { opacity: 0, y: 12 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: i * 0.04 },
-              whileHover: { y: -4 },
-              onClick: () => setPage(layer.id),
-              className: "group relative border rounded-2xl p-5 text-left transition-all overflow-hidden"       ,
-              style: cardStyle,}
-
-              , _react2.default.createElement('div', { className: "absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity"    ,
-                   style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },} )
-              , _react2.default.createElement('div', { className: "inline-flex p-2.5 rounded-xl mb-3 shadow-lg"    ,
-                   style: { background: `linear-gradient(135deg, ${C.deep}, ${C.deepDark})` },}
-                , _react2.default.createElement(Icon, { className: "w-5 h-5 text-white"  ,} )
-              )
-              , _react2.default.createElement('div', { className: "font-semibold tracking-tight text-white"  ,}, layer.name)
-              , _react2.default.createElement('div', { className: "text-xs mt-1" , style: { color: C.textSoft },}, layer.desc)
-              , _react2.default.createElement('div', { className: "flex items-center gap-1 text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity"       , style: { color: C.rose },}, "Open "
-                 , _react2.default.createElement(_lucidereact.ArrowUpRight, { className: "w-3 h-3" ,} )
-              )
-            )
-          );
-        })
-      )
-    )
-  );
-}
-
-// City Map
-function CityMapVisual() {
-  const [hover, setHover] = _react.useState.call(void 0, null);
-  const zones = [
-    { id: 'vashi', name: 'Vashi', x: 28, y: 30, intensity: 89 },
-    { id: 'belapur', name: 'Belapur', x: 50, y: 55, intensity: 67 },
-    { id: 'nerul', name: 'Nerul', x: 38, y: 45, intensity: 54 },
-    { id: 'kharghar', name: 'Kharghar', x: 65, y: 65, intensity: 78 },
-    { id: 'panvel', name: 'Panvel', x: 80, y: 75, intensity: 43 },
-    { id: 'airoli', name: 'Airoli', x: 18, y: 12, intensity: 38 }
-  ];
-
-  return (
-    _react2.default.createElement('div', { className: "border rounded-2xl p-5 mb-2 relative overflow-hidden"     , style: cardStyle,}
-      , _react2.default.createElement('div', { className: "flex items-center justify-between mb-4"   ,}
-        , _react2.default.createElement('h3', { className: "font-semibold flex items-center gap-2 tracking-tight text-white"     ,}
-          , _react2.default.createElement(_lucidereact.Satellite, { className: "w-4 h-4" , style: { color: C.rose },} ), " Live City Map"
-        )
-        , _react2.default.createElement('div', { className: "flex items-center gap-1.5 text-xs font-mono"    , style: { color: C.rose },}
-          , _react2.default.createElement(PulseDot, { color: C.rose,} ), " REAL-TIME"
-        )
-      )
-      , _react2.default.createElement('div', { className: "relative aspect-video rounded-xl overflow-hidden border"    , style: { backgroundColor: C.bg, borderColor: C.border },}
-        , _react2.default.createElement('svg', { viewBox: "0 0 100 100"   , preserveAspectRatio: "none", className: "w-full h-full" ,}
-          , _react2.default.createElement('defs', null
-            , _react2.default.createElement('radialGradient', { id: "oceanG",}
-              , _react2.default.createElement('stop', { offset: "0%", stopColor: C.deepDarker, stopOpacity: "0.5",} )
-              , _react2.default.createElement('stop', { offset: "100%", stopColor: C.bg, stopOpacity: "0",} )
-            )
-            , _react2.default.createElement('pattern', { id: "gridP", width: "5", height: "5", patternUnits: "userSpaceOnUse",}
-              , _react2.default.createElement('path', { d: "M 5 0 L 0 0 0 5"       , fill: "none", stroke: C.border, strokeWidth: "0.1",} )
-            )
-          )
-          , _react2.default.createElement('rect', { width: "100", height: "100", fill: "url(#gridP)",} )
-          , _react2.default.createElement('path', { d: "M 0,40 Q 30,35 50,50 T 100,60 L 100,100 L 0,100 Z"           , fill: "url(#oceanG)",} )
-          , zones.map((z, i) => zones.slice(i + 1).map((z2, j) => (
-            _react2.default.createElement('line', {
-              key: `${i}-${j}`,
-              x1: z.x, y1: z.y, x2: z2.x, y2: z2.y,
-              stroke: C.deep, strokeWidth: "0.15", strokeDasharray: "0.5 0.5" , opacity: "0.4",}
-            )
-          )))
-          , zones.map(z => {
-            const color = z.intensity > 70 ? C.deep : z.intensity > 50 ? '#c87583' : C.rose;
-            return (
-              _react2.default.createElement('g', { key: z.id,
-                 onMouseEnter: () => setHover(z),
-                 onMouseLeave: () => setHover(null),
-                 style: { cursor: 'pointer' },}
-                , _react2.default.createElement('circle', { cx: z.x, cy: z.y, r: z.intensity / 18, fill: color, opacity: "0.25",}
-                  , _react2.default.createElement('animate', { attributeName: "r", values: `${z.intensity / 22};${z.intensity / 14};${z.intensity / 22}`, dur: "3s", repeatCount: "indefinite",} )
-                )
-                , _react2.default.createElement('circle', { cx: z.x, cy: z.y, r: "1.2", fill: color,} )
-                , _react2.default.createElement('circle', { cx: z.x, cy: z.y, r: "0.5", fill: "white",} )
-                , _react2.default.createElement('text', { x: z.x, y: z.y - 3, textAnchor: "middle", fill: C.textMuted, fontSize: "2", fontFamily: "sans-serif", fontWeight: "600",}, z.name)
-              )
-            );
-          })
-        )
-        , hover && (
-          _react2.default.createElement('div', { className: "absolute top-3 left-3 backdrop-blur border rounded-lg p-3 text-xs"       ,
-               style: { backgroundColor: 'rgba(26,16,20,0.92)', borderColor: C.border },}
-            , _react2.default.createElement('div', { className: "font-bold text-white" ,}, hover.name)
-            , _react2.default.createElement('div', { className: "mt-1", style: { color: C.textMuted },}, "Active issues: "  , _react2.default.createElement('span', { className: "font-bold", style: { color: C.rose },}, hover.intensity))
-            , _react2.default.createElement('div', { style: { color: C.textSoft },}, "Mesh density: high"  )
-          )
-        )
-        , _react2.default.createElement('div', { className: "absolute bottom-3 right-3 flex items-center gap-3 backdrop-blur border rounded-lg px-3 py-2 text-xs font-mono"            ,
-             style: { backgroundColor: 'rgba(26,16,20,0.92)', borderColor: C.border, color: C.textSoft },}
-          , _react2.default.createElement('span', null, "19.0330° N" )
-          , _react2.default.createElement('span', null, "73.0297° E" )
-        )
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// CIVIC VIEW
-// ═══════════════════════════════════════════════
-function CivicView({ createTicket, tickets }) {
-  const [category, setCategory] = _react.useState.call(void 0, 'Water Leakage');
-  const [desc, setDesc] = _react.useState.call(void 0, '');
-  const [location, setLocation] = _react.useState.call(void 0, 'Vashi, Sector 17');
-
-  const categories = [
-    { name: 'Water Leakage', icon: _lucidereact.Droplets },
-    { name: 'Road Damage', icon: _lucidereact.Construction },
-    { name: 'Electricity Outage', icon: _lucidereact.Zap },
-    { name: 'Garbage Overflow', icon: _lucidereact.Trash2 },
-    { name: 'Sewage Blockage', icon: _lucidereact.Droplets },
-    { name: 'Streetlight Failure', icon: _lucidereact.Lightbulb },
-    { name: 'Air Pollution', icon: _lucidereact.Wind },
-    { name: 'Flooding', icon: _lucidereact.CloudRain },
-    { name: 'Tree Fall', icon: _lucidereact.TreePine },
-    { name: 'Stray Animals', icon: _lucidereact.Bell }
-  ];
-
-  function submit() {
-    createTicket(category, desc || `Auto: ${category}`, location);
-    setDesc('');
-  }
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Civic Ticket Kernel"  )
-        , _react2.default.createElement('p', { className: "mt-1", style: { color: C.textMuted },}, "Submit · AI route · dept dispatch · live tracking"         )
-      )
-
-      , _react2.default.createElement('div', { className: "grid lg:grid-cols-2 gap-6"  ,}
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-6"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-5 flex items-center gap-2 text-white"     ,}
-            , _react2.default.createElement('div', { className: "rounded-lg p-1.5" , style: { background: `linear-gradient(135deg, ${C.deep}, ${C.deepDark})` },}
-              , _react2.default.createElement(_lucidereact.FileCheck, { className: "w-4 h-4 text-white"  ,} )
-            ), "New Ticket"
-
-          )
-
-          , _react2.default.createElement('label', { className: "text-xs tracking-widest font-mono"  , style: { color: C.textSoft },}, "CATEGORY")
-          , _react2.default.createElement('div', { className: "grid grid-cols-2 gap-2 mt-2 mb-5"    ,}
-            , categories.map(c => {
-              const Icon = c.icon;
-              const active = category === c.name;
-              return (
-                _react2.default.createElement('button', {
-                  key: c.name,
-                  onClick: () => setCategory(c.name),
-                  className: "flex items-center gap-2 p-2.5 rounded-lg text-xs border transition-all"       ,
-                  style: {
-                    borderColor: active ? C.deep : C.borderSoft,
-                    backgroundColor: active ? 'rgba(162,72,87,0.25)' : 'rgba(20,12,15,0.6)',
-                    color: active ? '#fff' : C.textMuted
-                  },}
-
-                  , _react2.default.createElement(Icon, { className: "w-3.5 h-3.5 flex-shrink-0"  , style: { color: C.rose },} )
-                  , _react2.default.createElement('span', { className: "truncate",}, c.name)
-                )
-              );
-            })
-          )
-
-          , _react2.default.createElement('label', { className: "text-xs tracking-widest font-mono"  , style: { color: C.textSoft },}, "LOCATION")
-          , _react2.default.createElement('input', {
-            value: location,
-            onChange: e => setLocation(e.target.value),
-            className: "w-full mt-1.5 mb-4 px-3 py-2.5 border rounded-lg text-sm outline-none transition-colors"         ,
-            style: { backgroundColor: 'rgba(20,12,15,0.85)', borderColor: C.borderSoft, color: '#fff' },
-            onFocus: e => e.target.style.borderColor = C.deep,
-            onBlur: e => e.target.style.borderColor = C.borderSoft,}
-          )
-
-          , _react2.default.createElement('label', { className: "text-xs tracking-widest font-mono"  , style: { color: C.textSoft },}, "DESCRIPTION")
-          , _react2.default.createElement('textarea', {
-            value: desc,
-            onChange: e => setDesc(e.target.value),
-            placeholder: "Describe the civic issue in detail..."     ,
-            rows: 3,
-            className: "w-full mt-1.5 mb-5 px-3 py-2.5 border rounded-lg text-sm outline-none resize-none"         ,
-            style: { backgroundColor: 'rgba(20,12,15,0.85)', borderColor: C.borderSoft, color: '#fff' },
-            onFocus: e => e.target.style.borderColor = C.deep,
-            onBlur: e => e.target.style.borderColor = C.borderSoft,}
-          )
-
-          , _react2.default.createElement(_framermotion.motion.button, {
-            whileTap: { scale: 0.98 },
-            onClick: submit,
-            className: "w-full text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg"          ,
-            style: { background: `linear-gradient(90deg, ${C.deep}, ${C.deepDark})` },}
-
-            , _react2.default.createElement(_lucidereact.Send, { className: "w-4 h-4" ,} ), " Submit to OS Kernel"
-          )
-
-          , _react2.default.createElement('div', { className: "mt-4 grid grid-cols-3 gap-2 text-xs"    ,}
-            , [{ i: _lucidereact.Bot, t: 'AI scoring' }, { i: _lucidereact.Map, t: 'Geo-route' }, { i: _lucidereact.Lock, t: 'Encrypted' }].map((x, i) => {
-              const I = x.i;
-              return (
-                _react2.default.createElement('div', { key: i, className: "border rounded-lg p-2 flex items-center gap-2"     ,
-                     style: innerCardStyle,}
-                  , _react2.default.createElement(I, { className: "w-3 h-3" , style: { color: C.rose },} ), " " , _react2.default.createElement('span', { style: { color: C.textMuted },}, x.t)
-                )
-              );
-            })
-          )
-        )
-
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-6"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-5 flex items-center gap-2 text-white"     ,}
-            , _react2.default.createElement('div', { className: "rounded-lg p-1.5" , style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },}
-              , _react2.default.createElement(_lucidereact.Layers, { className: "w-4 h-4 text-white"  ,} )
-            ), "Recent Tickets"
-
-          )
-          , tickets.length === 0 ? (
-            _react2.default.createElement('div', { className: "text-sm text-center py-16 border border-dashed rounded-xl"     ,
-                 style: { borderColor: C.borderSoft, color: C.textSoft },}
-              , _react2.default.createElement(_lucidereact.FileCheck, { className: "w-8 h-8 mx-auto mb-2 opacity-40"    ,} ), "No tickets yet. Submit one to see it routed."
-
-            )
-          ) : (
-            _react2.default.createElement('div', { className: "space-y-3 max-h-96 overflow-y-auto pr-1"   ,}
-              , _react2.default.createElement(_framermotion.AnimatePresence, null
-                , tickets.map(t => (
-                  _react2.default.createElement(_framermotion.motion.div, {
-                    key: t.id,
-                    initial: { opacity: 0, x: 12 },
-                    animate: { opacity: 1, x: 0 },
-                    exit: { opacity: 0 },
-                    className: "border rounded-xl p-4"  ,
-                    style: innerCardStyle,}
-
-                    , _react2.default.createElement('div', { className: "flex justify-between items-start mb-2"   ,}
-                      , _react2.default.createElement('span', { className: "text-sm font-mono font-bold"  , style: { color: C.rose },}, t.id)
-                      , _react2.default.createElement('span', { className: "text-xs px-2 py-0.5 rounded-full font-semibold border"     ,
-                            style: {
-                              backgroundColor: t.severity === 'HIGH' ? 'rgba(162,72,87,0.3)' : t.severity === 'MED' ? 'rgba(218,182,188,0.18)' : 'rgba(218,182,188,0.1)',
-                              borderColor: t.severity === 'HIGH' ? C.deep : C.borderSoft,
-                              color: t.severity === 'HIGH' ? '#ffb6c0' : t.severity === 'MED' ? C.rose : C.textMuted
-                            },}
-                        , t.severity
-                      )
-                    )
-                    , _react2.default.createElement('div', { className: "text-sm font-medium text-white"  ,}, t.category)
-                    , _react2.default.createElement('div', { className: "text-xs mt-1" , style: { color: C.textSoft },}, "→ " , t.dept)
-                    , _react2.default.createElement('div', { className: "text-xs mt-1" , style: { color: C.textSoft },}, "📍 " , t.location)
-                    , _react2.default.createElement('div', { className: "flex justify-between text-xs mt-3 pt-3 border-t"     , style: { borderColor: C.borderSoft },}
-                      , _react2.default.createElement('span', { style: { color: C.textMuted },}, "ETA " , _react2.default.createElement('span', { style: { color: C.rose },}, t.eta))
-                      , _react2.default.createElement('span', { className: "font-mono", style: { color: C.textSoft },}, t.created)
-                    )
-                  )
-                ))
-              )
-            )
-          )
-        )
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// EMERGENCY VIEW
-// ═══════════════════════════════════════════════
-function EmergencyView({ triggerEmergency, active }) {
-  const services = [
-    { id: 'ambulance', label: 'Ambulance', icon: _lucidereact.Ambulance, num: '108' },
-    { id: 'fire', label: 'Fire Brigade', icon: _lucidereact.Flame, num: '101' },
-    { id: 'police', label: 'Police', icon: _lucidereact.Shield, num: '100' },
-    { id: 'flood', label: 'Flood Rescue', icon: _lucidereact.CloudRain, num: '1077' },
-    { id: 'hospital', label: 'Hospital Locator', icon: _lucidereact.Hospital, num: '102' },
-    { id: 'women', label: 'Women Helpline', icon: _lucidereact.Phone, num: '1091' }
-  ];
-
-  const hospitals = [
-    { name: 'MGM Hospital', dist: '1.4 km', beds: 12, icu: 3 },
-    { name: 'Apollo Vashi', dist: '2.1 km', beds: 8, icu: 2 },
-    { name: 'Fortis Mulund', dist: '4.7 km', beds: 23, icu: 5 },
-    { name: 'D Y Patil Hospital', dist: '5.9 km', beds: 17, icu: 4 }
-  ];
-
-  const liveResponse = useLiveNumber(7.2, 0.05, 2000);
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-6",}
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5 flex items-center justify-between flex-wrap gap-3"       ,
-             style: { background: `linear-gradient(90deg, rgba(122,47,60,0.5), rgba(36,20,25,0.55))`, borderColor: C.deep },}
-          , _react2.default.createElement('div', { className: "flex items-center gap-3"  ,}
-            , _react2.default.createElement('div', { className: "relative",}
-              , _react2.default.createElement(_lucidereact.Radio, { className: "w-7 h-7" , style: { color: C.rose },} )
-              , _react2.default.createElement('span', { className: "absolute inset-0 blur-xl opacity-50"   , style: { backgroundColor: C.deep },} )
-            )
-            , _react2.default.createElement('div', null
-              , _react2.default.createElement('h2', { className: "text-xl font-bold text-white tracking-tight"   ,}, "Emergency Dispatch Layer"  )
-              , _react2.default.createElement('p', { className: "text-xs mt-0.5" , style: { color: C.rose },}, "Critical response · live across all districts"      )
-            )
-          )
-          , _react2.default.createElement('div', { className: "flex items-center gap-2 text-xs"   ,}
-            , _react2.default.createElement('div', { className: "border rounded-lg px-3 py-1.5"   , style: { backgroundColor: 'rgba(0,0,0,0.4)', borderColor: C.border },}
-              , _react2.default.createElement('div', { style: { color: C.textSoft },}, "AVG RESPONSE" )
-              , _react2.default.createElement('div', { className: "font-bold font-mono" , style: { color: C.rose },}, _react2.default.createElement(AnimatedNumber, { value: liveResponse, decimals: 1, suffix: " min" ,} ))
-            )
-          )
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "grid grid-cols-2 md:grid-cols-3 gap-3 mb-6"    ,}
-        , services.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            _react2.default.createElement(_framermotion.motion.button, {
-              key: s.id,
-              initial: { opacity: 0, y: 10 },
-              animate: { opacity: 1, y: 0 },
-              transition: { delay: i * 0.04 },
-              whileHover: { y: -3 },
-              whileTap: { scale: 0.97 },
-              onClick: () => triggerEmergency(s.label),
-              disabled: active,
-              className: "group relative border rounded-2xl p-5 transition-all text-left disabled:opacity-50 overflow-hidden"        ,
-              style: cardStyle,
-              onMouseEnter: e => !active && (e.currentTarget.style.borderColor = C.deep),
-              onMouseLeave: e => !active && (e.currentTarget.style.borderColor = C.border),}
-
-              , _react2.default.createElement('div', { className: "absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity"    ,
-                   style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },} )
-              , _react2.default.createElement('div', { className: "inline-flex p-2.5 rounded-xl shadow-lg mb-3"    ,
-                   style: { background: `linear-gradient(135deg, ${C.deep}, ${C.deepDark})` },}
-                , _react2.default.createElement(Icon, { className: "w-5 h-5 text-white"  ,} )
-              )
-              , _react2.default.createElement('div', { className: "font-semibold text-white" ,}, s.label)
-              , _react2.default.createElement('div', { className: "text-xs mt-1 font-mono"  , style: { color: C.textSoft },}, "Dial " , s.num)
-              , _react2.default.createElement('div', { className: "text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1"       , style: { color: C.rose },}, "Dispatch now "
-                  , _react2.default.createElement(_lucidereact.ArrowUpRight, { className: "w-3 h-3" ,} )
-              )
-            )
-          );
-        })
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-2 gap-4"  ,}
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 flex items-center gap-2 text-white"     ,}
-            , _react2.default.createElement(_lucidereact.Hospital, { className: "w-4 h-4" , style: { color: C.rose },} ), " Nearest Hospitals"
-          )
-          , _react2.default.createElement('div', { className: "space-y-2",}
-            , hospitals.map(h => (
-              _react2.default.createElement('div', { key: h.name, className: "border rounded-xl p-3 flex justify-between items-center transition-colors"      , style: innerCardStyle,}
-                , _react2.default.createElement('div', null
-                  , _react2.default.createElement('div', { className: "font-semibold text-white text-sm"  ,}, h.name)
-                  , _react2.default.createElement('div', { className: "text-xs mt-0.5" , style: { color: C.textSoft },}, h.dist, " away" )
-                )
-                , _react2.default.createElement('div', { className: "flex gap-3 text-right"  ,}
-                  , _react2.default.createElement('div', null
-                    , _react2.default.createElement('div', { className: "font-bold", style: { color: C.rose },}, h.beds)
-                    , _react2.default.createElement('div', { className: "text-xs", style: { color: C.textSoft },}, "beds")
-                  )
-                  , _react2.default.createElement('div', null
-                    , _react2.default.createElement('div', { className: "font-bold", style: { color: '#e8c8ce' },}, h.icu)
-                    , _react2.default.createElement('div', { className: "text-xs", style: { color: C.textSoft },}, "ICU")
-                  )
-                )
-              )
-            ))
-          )
-        )
-
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 flex items-center gap-2 text-white"     ,}
-            , _react2.default.createElement(_lucidereact.Bot, { className: "w-4 h-4" , style: { color: C.rose },} ), " AI Triage Cortex"
-          )
-          , _react2.default.createElement('div', { className: "space-y-3",}
-            , [
-              { label: 'Severity Model', val: 'classifying 14 signals' },
-              { label: 'Unit Dispatch', val: '8 ready · 3 in transit' },
-              { label: 'Avg Response', val: '7.2 min citywide' },
-              { label: 'ICU Availability', val: '14 beds open' }
-            ].map(x => (
-              _react2.default.createElement('div', { key: x.label, className: "border rounded-xl p-3"  , style: innerCardStyle,}
-                , _react2.default.createElement('div', { className: "text-xs tracking-wide font-mono"  , style: { color: C.textSoft },}, x.label.toUpperCase())
-                , _react2.default.createElement('div', { className: "font-medium mt-0.5" , style: { color: C.rose },}, x.val)
-              )
-            ))
-          )
-        )
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// DASHBOARD VIEW
-// ═══════════════════════════════════════════════
-function DashboardView() {
-  const trendData = [
-    { day: 'Mon', tickets: 320, resolved: 280 },
-    { day: 'Tue', tickets: 410, resolved: 360 },
-    { day: 'Wed', tickets: 380, resolved: 340 },
-    { day: 'Thu', tickets: 450, resolved: 400 },
-    { day: 'Fri', tickets: 520, resolved: 470 },
-    { day: 'Sat', tickets: 380, resolved: 350 },
-    { day: 'Sun', tickets: 290, resolved: 270 }
-  ];
-  const categoryData = [
-    { name: 'Water', value: 128, color: C.deep },
-    { name: 'Roads', value: 84, color: '#c87583' },
-    { name: 'Garbage', value: 63, color: C.rose },
-    { name: 'Power', value: 45, color: C.deepDark },
-    { name: 'Other', value: 32, color: '#8a6a72' }
-  ];
-  const zones = [
-    { zone: 'Vashi', issues: 89 }, { zone: 'Belapur', issues: 67 },
-    { zone: 'Nerul', issues: 54 }, { zone: 'Kharghar', issues: 78 },
-    { zone: 'Panvel', issues: 43 }, { zone: 'Airoli', issues: 38 }
-  ];
-
-  const lWater = useLiveNumber(128);
-  const lRoad = useLiveNumber(84);
-  const lGarb = useLiveNumber(63);
-  const lFlood = useLiveNumber(12);
-
-  const tooltipStyle = { background: C.bg, border: `1px solid ${C.deep}`, borderRadius: 8, color: C.rose };
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "City Intelligence" )
-        , _react2.default.createElement('p', { className: "mt-1 flex items-center gap-2 text-sm"    , style: { color: C.textMuted },}
-          , _react2.default.createElement(PulseDot, { color: C.rose,} ), "Real-time civic telemetry · last sync 12s ago"
-
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"    ,}
-        , [
-          { label: 'Water Issues', val: lWater, icon: _lucidereact.Droplets },
-          { label: 'Road Damage', val: lRoad, icon: _lucidereact.Construction },
-          { label: 'Garbage Spots', val: lGarb, icon: _lucidereact.Trash2 },
-          { label: 'Flood Zones', val: lFlood, icon: _lucidereact.CloudRain }
-        ].map(s => {
-          const Icon = s.icon;
-          return (
-            _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-              , _react2.default.createElement('div', { className: "flex items-center justify-between mb-2"   ,}
-                , _react2.default.createElement(Icon, { className: "w-5 h-5" , style: { color: C.rose },} )
-                , _react2.default.createElement(_lucidereact.Activity, { className: "w-3 h-3 animate-pulse"  , style: { color: C.textSoft },} )
-              )
-              , _react2.default.createElement('div', { className: "text-3xl font-bold tracking-tight text-white"   ,}, _react2.default.createElement(AnimatedNumber, { value: s.val,} ))
-              , _react2.default.createElement('div', { className: "text-xs mt-1" , style: { color: C.textSoft },}, s.label)
-            )
-          );
-        })
-      )
-
-      , _react2.default.createElement('div', { className: "grid lg:grid-cols-2 gap-4 mb-4"   ,}
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "Tickets · 7-Day Trend"   )
-          , _react2.default.createElement(_recharts.ResponsiveContainer, { width: "100%", height: 220,}
-            , _react2.default.createElement(_recharts.AreaChart, { data: trendData,}
-              , _react2.default.createElement('defs', null
-                , _react2.default.createElement('linearGradient', { id: "grad1", x1: "0", y1: "0", x2: "0", y2: "1",}
-                  , _react2.default.createElement('stop', { offset: "0%", stopColor: C.deep, stopOpacity: 0.6,} )
-                  , _react2.default.createElement('stop', { offset: "100%", stopColor: C.deep, stopOpacity: 0,} )
-                )
-                , _react2.default.createElement('linearGradient', { id: "grad2", x1: "0", y1: "0", x2: "0", y2: "1",}
-                  , _react2.default.createElement('stop', { offset: "0%", stopColor: C.rose, stopOpacity: 0.5,} )
-                  , _react2.default.createElement('stop', { offset: "100%", stopColor: C.rose, stopOpacity: 0,} )
-                )
-              )
-              , _react2.default.createElement(_recharts.CartesianGrid, { strokeDasharray: "3 3" , stroke: C.border,} )
-              , _react2.default.createElement(_recharts.XAxis, { dataKey: "day", stroke: C.textSoft, fontSize: 11,} )
-              , _react2.default.createElement(_recharts.YAxis, { stroke: C.textSoft, fontSize: 11,} )
-              , _react2.default.createElement(_recharts.Tooltip, { contentStyle: tooltipStyle,} )
-              , _react2.default.createElement(_recharts.Area, { type: "monotone", dataKey: "tickets", stroke: C.deep, fill: "url(#grad1)", strokeWidth: 2,} )
-              , _react2.default.createElement(_recharts.Area, { type: "monotone", dataKey: "resolved", stroke: C.rose, fill: "url(#grad2)", strokeWidth: 2,} )
-            )
-          )
-        )
-
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "Category Distribution" )
-          , _react2.default.createElement(_recharts.ResponsiveContainer, { width: "100%", height: 220,}
-            , _react2.default.createElement(_recharts.PieChart, null
-              , _react2.default.createElement(_recharts.Pie, { data: categoryData, dataKey: "value", nameKey: "name", outerRadius: 80, innerRadius: 50, paddingAngle: 3,}
-                , categoryData.map((c, i) => _react2.default.createElement(_recharts.Cell, { key: i, fill: c.color,} ))
-              )
-              , _react2.default.createElement(_recharts.Tooltip, { contentStyle: tooltipStyle,} )
-              , _react2.default.createElement(_recharts.Legend, { wrapperStyle: { fontSize: 11, color: C.textMuted },} )
-            )
-          )
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5 mb-4"   , style: cardStyle,}
-        , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "Zone Hotspots" )
-        , _react2.default.createElement(_recharts.ResponsiveContainer, { width: "100%", height: 220,}
-          , _react2.default.createElement(_recharts.BarChart, { data: zones,}
-            , _react2.default.createElement(_recharts.CartesianGrid, { strokeDasharray: "3 3" , stroke: C.border,} )
-            , _react2.default.createElement(_recharts.XAxis, { dataKey: "zone", stroke: C.textSoft, fontSize: 11,} )
-            , _react2.default.createElement(_recharts.YAxis, { stroke: C.textSoft, fontSize: 11,} )
-            , _react2.default.createElement(_recharts.Tooltip, { contentStyle: tooltipStyle,} )
-            , _react2.default.createElement(_recharts.Bar, { dataKey: "issues", radius: [8, 8, 0, 0],}
-              , zones.map((z, i) => (
-                _react2.default.createElement(_recharts.Cell, { key: i, fill: z.issues > 70 ? C.deep : z.issues > 50 ? '#c87583' : C.rose,} )
-              ))
-            )
-          )
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-        , _react2.default.createElement('div', { className: "flex items-center justify-between mb-3"   ,}
-          , _react2.default.createElement('h3', { className: "font-semibold flex items-center gap-2 text-white"    ,}
-            , _react2.default.createElement(_lucidereact.Map, { className: "w-4 h-4" , style: { color: C.rose },} ), " Smart Routing Stream"
-          )
-          , _react2.default.createElement('span', { className: "text-xs flex items-center gap-1.5 font-mono"    , style: { color: C.rose },}
-            , _react2.default.createElement(PulseDot, { color: C.rose,} ), " LIVE"
-          )
-        )
-        , _react2.default.createElement('div', { className: "border rounded-xl p-4 text-xs space-y-1.5 font-mono"     , style: innerCardStyle,}
-          , [
-            { c: C.rose, t: '[ROUTING] active threads: 47' },
-            { c: '#e8c8ce', t: '[GIS] resolving zone clusters · 247 nodes' },
-            { c: C.rose, t: '[DISPATCH] truck-12 → Sec 17 Vashi (ETA 14m)' },
-            { c: '#d4a5ad', t: '[BALANCE] redistributing load to district-3' },
-            { c: '#e8c8ce', t: '[MESH] inter-dept handshake completed' },
-            { c: C.rose, t: '[CORTEX] re-prioritizing 8 medium-severity' }
-          ].map((x, i) => _react2.default.createElement('div', { key: i, style: { color: x.c },}, x.t))
-        )
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// AI VIEW
-// ═══════════════════════════════════════════════
-function AIView({ messages, input, setInput, send }) {
-  const suggestions = [
-    'How do I report potholes?',
-    'Air quality in Vashi today?',
-    'Traffic on Palm Beach Road?',
-    'How is my data privacy protected?'
-  ];
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "flex items-center gap-3 mb-8"   ,}
-        , _react2.default.createElement('div', { className: "rounded-2xl p-3 shadow-lg"  , style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },}
-          , _react2.default.createElement(_lucidereact.Bot, { className: "w-7 h-7 text-white"  ,} )
-        )
-        , _react2.default.createElement('div', null
-          , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "NMOS Cortex" )
-          , _react2.default.createElement('p', { className: "text-sm", style: { color: C.textMuted },}, "Cognitive layer · Cortex.v2 · multimodal civic AI"       )
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl flex flex-col h-96 overflow-hidden"     , style: cardStyle,}
-        , _react2.default.createElement('div', { className: "flex-1 overflow-y-auto p-5 space-y-3"   ,}
-          , messages.map((m, i) => (
-            _react2.default.createElement(_framermotion.motion.div, {
-              key: i,
-              initial: { opacity: 0, y: 6 },
-              animate: { opacity: 1, y: 0 },
-              className: `flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`,}
-
-              , _react2.default.createElement('div', { className: "max-w-md rounded-2xl px-4 py-2.5 text-sm leading-relaxed border"      ,
-                   style: 
-                     m.role === 'user'
-                       ? { background: `linear-gradient(135deg, ${C.deep}, ${C.deepDark})`, color: '#fff', borderColor: 'transparent' }
-                       : { backgroundColor: 'rgba(20,12,15,0.85)', borderColor: C.border, color: C.textMuted }
-                   ,}
-                , m.role === 'ai' && (
-                  _react2.default.createElement('div', { className: "text-xs mb-1.5 flex items-center gap-1.5 font-mono tracking-wide"      , style: { color: C.rose },}
-                    , _react2.default.createElement(_lucidereact.Bot, { className: "w-3 h-3" ,} ), " NMOS CORTEX"
-                  )
-                )
-                , m.text
-              )
-            )
-          ))
-        )
-
-        , _react2.default.createElement('div', { className: "border-t p-3" , style: { borderColor: C.border, backgroundColor: 'rgba(20,12,15,0.55)' },}
-          , _react2.default.createElement('div', { className: "flex gap-2 mb-2 overflow-x-auto pb-1"    ,}
-            , suggestions.map(s => (
-              _react2.default.createElement('button', {
-                key: s,
-                onClick: () => setInput(s),
-                className: "text-xs whitespace-nowrap px-3 py-1.5 rounded-full border transition-colors"      ,
-                style: { backgroundColor: 'rgba(36,20,25,0.6)', borderColor: C.borderSoft, color: C.textMuted },}
-
-                , s
-              )
-            ))
-          )
-          , _react2.default.createElement('div', { className: "flex gap-2" ,}
-            , _react2.default.createElement('input', {
-              value: input,
-              onChange: e => setInput(e.target.value),
-              onKeyDown: e => e.key === 'Enter' && send(),
-              placeholder: "Ask NMOS anything about the city..."     ,
-              className: "flex-1 border rounded-lg px-4 py-2.5 text-sm outline-none"      ,
-              style: { backgroundColor: 'rgba(20,12,15,0.85)', borderColor: C.borderSoft, color: '#fff' },
-              onFocus: e => e.target.style.borderColor = C.deep,
-              onBlur: e => e.target.style.borderColor = C.borderSoft,}
-            )
-            , _react2.default.createElement('button', {
-              onClick: send,
-              className: "text-white px-4 rounded-lg shadow-lg transition-all"    ,
-              style: { background: `linear-gradient(90deg, ${C.deep}, ${C.deepDark})` },}
-
-              , _react2.default.createElement(_lucidereact.Send, { className: "w-4 h-4" ,} )
-            )
-          )
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-3 gap-3 mt-6"   ,}
-        , [
-          { label: 'Queries · 24h', val: 12840, icon: _lucidereact.MessageSquare },
-          { label: 'Avg Response', val: '0.7s', icon: _lucidereact.Clock, raw: true },
-          { label: 'Accuracy', val: '94.2%', icon: _lucidereact.CheckCircle2, raw: true }
-        ].map(s => {
-          const Icon = s.icon;
-          return (
-            _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-              , _react2.default.createElement(Icon, { className: "w-5 h-5 mb-2"  , style: { color: C.rose },} )
-              , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight text-white"   ,}
-                , s.raw ? s.val : _react2.default.createElement(AnimatedNumber, { value: s.val,} )
-              )
-              , _react2.default.createElement('div', { className: "text-xs mt-0.5" , style: { color: C.textSoft },}, s.label)
-            )
-          );
-        })
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// COMMUNITY VIEW
-// ═══════════════════════════════════════════════
-function CommunityView({ pushLog }) {
-  const [reports] = _react.useState.call(void 0, [
-    { user: 'Aarav P.', loc: 'Sector 15, Vashi', issue: 'Pothole near bus stop', votes: 47, time: '12m ago' },
-    { user: 'Priya M.', loc: 'CBD Belapur', issue: 'Streetlight out for 3 days', votes: 28, time: '1h ago' },
-    { user: 'Rohit K.', loc: 'Palm Beach Rd', issue: 'Garbage dump near sea view', votes: 89, time: '2h ago' },
-    { user: 'Sneha D.', loc: 'Nerul West', issue: 'Water shortage building 7', votes: 64, time: '3h ago' },
-    { user: 'Vikram S.', loc: 'Kharghar Sec 35', issue: 'Tree branch fallen on road', votes: 33, time: '5h ago' }
-  ]);
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Community Reporting" )
-        , _react2.default.createElement('p', { className: "mt-1", style: { color: C.textMuted },}, "Citizen-powered eyes across the city"    )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-3 gap-3 mb-6"   ,}
-        , [
-          { label: 'Active Reporters', val: 23409, icon: _lucidereact.Users },
-          { label: 'This Week', val: 1847, icon: _lucidereact.Camera },
-          { label: 'Verified Reports', val: '94%', icon: _lucidereact.CheckCircle2, raw: true }
-        ].map(s => {
-          const Icon = s.icon;
-          return (
-            _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-              , _react2.default.createElement(Icon, { className: "w-5 h-5 mb-2"  , style: { color: C.rose },} )
-              , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight text-white"   ,}
-                , s.raw ? s.val : _react2.default.createElement(AnimatedNumber, { value: s.val,} )
-              )
-              , _react2.default.createElement('div', { className: "text-xs mt-0.5" , style: { color: C.textSoft },}, s.label)
-            )
-          );
-        })
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-        , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "Live Reports" )
-        , _react2.default.createElement('div', { className: "space-y-3",}
-          , reports.map((r, i) => (
-            _react2.default.createElement(_framermotion.motion.div, {
-              key: i,
-              initial: { opacity: 0, x: 8 },
-              animate: { opacity: 1, x: 0 },
-              transition: { delay: i * 0.05 },
-              className: "border rounded-xl p-4 flex justify-between items-start gap-3 transition-colors"       ,
-              style: innerCardStyle,}
-
-              , _react2.default.createElement('div', { className: "flex-1",}
-                , _react2.default.createElement('div', { className: "flex items-center gap-2 text-sm"   ,}
-                  , _react2.default.createElement('div', { className: "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"        ,
-                       style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },}
-                    , r.user[0]
-                  )
-                  , _react2.default.createElement('span', { className: "font-semibold text-white" ,}, r.user)
-                  , _react2.default.createElement('span', { className: "text-xs", style: { color: C.textSoft },}, "· " , r.time)
-                )
-                , _react2.default.createElement('div', { className: "text-xs mt-1.5 ml-9"  , style: { color: C.textSoft },}, "📍 " , r.loc)
-                , _react2.default.createElement('div', { className: "text-sm mt-1 ml-9"  , style: { color: C.textMuted },}, r.issue)
-              )
-              , _react2.default.createElement('button', {
-                onClick: () => pushLog(`[COMMUNITY] upvote registered`),
-                className: "px-3 py-2 rounded-xl text-xs flex flex-col items-center transition-colors border"        ,
-                style: { backgroundColor: 'rgba(36,20,25,0.7)', borderColor: C.borderSoft },}
-
-                , _react2.default.createElement(_lucidereact.TrendingUp, { className: "w-4 h-4" , style: { color: C.rose },} )
-                , _react2.default.createElement('span', { className: "font-bold text-white mt-0.5"  ,}, r.votes)
-              )
-            )
-          ))
-        )
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// TRANSPARENCY VIEW
-// ═══════════════════════════════════════════════
-function TransparencyView() {
-  const ledger = [
-    { id: 'LDG-9012', dept: 'Water', amount: '₹4.2 Cr', purpose: 'Sector 17 pipeline upgrade', status: 'EXECUTED' },
-    { id: 'LDG-9011', dept: 'Roads', amount: '₹8.7 Cr', purpose: 'Palm Beach resurfacing Q2', status: 'IN PROGRESS' },
-    { id: 'LDG-9010', dept: 'Sanitation', amount: '₹1.8 Cr', purpose: 'Compactor vehicles · 12 units', status: 'EXECUTED' },
-    { id: 'LDG-9009', dept: 'Power', amount: '₹3.4 Cr', purpose: 'LED streetlight retrofit', status: 'IN PROGRESS' },
-    { id: 'LDG-9008', dept: 'Parks', amount: '₹0.9 Cr', purpose: 'Mini-forest Belapur', status: 'PLANNED' }
-  ];
-
-  const statusStyle = (s) => {
-    if (s === 'EXECUTED') return { bg: 'rgba(218,182,188,0.18)', border: C.rose, color: C.rose };
-    if (s === 'IN PROGRESS') return { bg: 'rgba(162,72,87,0.25)', border: C.deep, color: '#e8c8ce' };
-    return { bg: 'rgba(36,20,25,0.6)', border: C.borderSoft, color: C.textMuted };
+    });
+  });
+
+  const productImages = {
+    top: [
+      'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400',
+      'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400',
+      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
+      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400',
+    ],
+    bottom: [
+      'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400',
+      'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400',
+      'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',
+    ],
+    shoes: [
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
+      'https://images.unsplash.com/photo-1573100925118-870b8efc799d?w=400',
+      'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400',
+    ],
+    acc: [
+      'https://images.unsplash.com/photo-1635767582909-345b8eea4d24?w=400',
+      'https://images.unsplash.com/photo-1591561954557-26941169b49e?w=400',
+      'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400',
+    ],
   };
 
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Transparency Ledger" )
-        , _react2.default.createElement('p', { className: "mt-1 flex items-center gap-2 text-sm"    , style: { color: C.textMuted },}
-          , _react2.default.createElement(_lucidereact.Lock, { className: "w-3 h-3" , style: { color: C.rose },} ), " Immutable public ledger · every paisa, every project"
-        )
-      )
+  const outfitTemplates = {
+    streetwear: { top: ['Cropped bomber', 'Oversized tee'], bottom: ['Cargo pants', 'Wide jeans'], shoes: ['Chunky sneakers', 'Combat boots'], acc: ['Crossbody bag', 'Bucket hat'] },
+    y2k: { top: ['Baby tee', 'Halter top'], bottom: ['Low-rise cargo', 'Mini denim'], shoes: ['Platform sandals', 'Mary Janes'], acc: ['Mini bag', 'Butterfly clips'] },
+    coquette: { top: ['Bow cardigan', 'Lace cami'], bottom: ['Satin mini', 'Ruffle skirt'], shoes: ['Mary Janes', 'Ballet flats'], acc: ['Pearl set', 'Bow ribbon'] },
+    cleangirl: { top: ['Cream tank', 'Linen shirt'], bottom: ['Wide trousers', 'Slip skirt'], shoes: ['White sneakers', 'Mules'], acc: ['Gold hoops', 'Tote bag'] },
+    balletcore: { top: ['Wrap knit', 'Ribbed bodysuit'], bottom: ['Tulle midi', 'Leg warmers'], shoes: ['Ballet flats', 'Mary Janes'], acc: ['Hair ribbon', 'Pearl studs'] },
+    minimal: { top: ['Black slip', 'Oversized shirt'], bottom: ['Tailored pants', 'Pencil skirt'], shoes: ['Loafers', 'Pointed flats'], acc: ['Gold hoops', 'Leather bag'] },
+    grunge: { top: ['Plaid flannel', 'Band tee'], bottom: ['Ripped denim', 'Black mini'], shoes: ['Combat boots', 'Doc Martens'], acc: ['Choker', 'Beanie'] },
+  };
 
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-4 gap-3 mb-6"   ,}
-        , [
-          { label: 'Total Allocated', val: '₹847 Cr' },
-          { label: 'Executed', val: '₹612 Cr' },
-          { label: 'In Progress', val: '₹189 Cr' },
-          { label: 'Open Audits', val: '23' }
-        ].map(s => (
-          _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-            , _react2.default.createElement('div', { className: "text-xs tracking-wide" , style: { color: C.textSoft },}, s.label)
-            , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight mt-1"   , style: { color: C.rose },}, s.val)
-          )
-        ))
-      )
+  function pickRand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-        , _react2.default.createElement('h3', { className: "font-semibold mb-4 flex items-center gap-2 text-white"     ,}
-          , _react2.default.createElement(_lucidereact.Eye, { className: "w-4 h-4" , style: { color: C.rose },} ), " Public Spending Ledger"
-        )
-        , _react2.default.createElement('div', { className: "overflow-x-auto",}
-          , _react2.default.createElement('table', { className: "w-full text-sm" ,}
-            , _react2.default.createElement('thead', { className: "text-xs border-b" , style: { color: C.textSoft, borderColor: C.border },}
-              , _react2.default.createElement('tr', null
-                , _react2.default.createElement('th', { className: "text-left py-3 font-mono tracking-wider"   ,}, "ID")
-                , _react2.default.createElement('th', { className: "text-left font-mono tracking-wider"  ,}, "DEPT")
-                , _react2.default.createElement('th', { className: "text-left font-mono tracking-wider"  ,}, "AMOUNT")
-                , _react2.default.createElement('th', { className: "text-left font-mono tracking-wider"  ,}, "PURPOSE")
-                , _react2.default.createElement('th', { className: "text-left font-mono tracking-wider"  ,}, "STATUS")
-              )
-            )
-            , _react2.default.createElement('tbody', null
-              , ledger.map(l => {
-                const ss = statusStyle(l.status);
-                return (
-                  _react2.default.createElement('tr', { key: l.id, className: "border-b transition-colors" , style: { borderColor: C.border },}
-                    , _react2.default.createElement('td', { className: "py-3 font-mono text-xs"  , style: { color: C.rose },}, l.id)
-                    , _react2.default.createElement('td', { className: "text-sm", style: { color: C.textMuted },}, l.dept)
-                    , _react2.default.createElement('td', { className: "font-bold text-sm" , style: { color: C.rose },}, l.amount)
-                    , _react2.default.createElement('td', { className: "text-sm", style: { color: C.textMuted },}, l.purpose)
-                    , _react2.default.createElement('td', null
-                      , _react2.default.createElement('span', { className: "text-xs px-2.5 py-1 rounded-full font-semibold border"     ,
-                            style: { backgroundColor: ss.bg, borderColor: ss.border, color: ss.color },}
-                        , l.status
-                      )
-                    )
-                  )
-                );
-              })
-            )
-          )
-        )
-      )
-    )
-  );
-}
+  function generateOutfit() {
+    const style = document.querySelector('#styleChips .chip.active')?.dataset.style || 'streetwear';
+    const occ = document.querySelector('#occasionChips .chip.active')?.dataset.occ || 'campus';
+    const wea = document.querySelector('#weatherChips .chip.active')?.dataset.wea || 'warm';
+    const weaIcon = { warm: '☀️', breezy: '🌬️', rainy: '🌧️', cold: '❄️' }[wea];
+    const styleName = { streetwear: 'Streetwear', y2k: 'Y2K', coquette: 'Coquette', cleangirl: 'Clean Girl', balletcore: 'Balletcore', minimal: 'Minimal', grunge: 'Grunge' }[style];
+    const occName = { campus: 'Campus', party: 'Party', shoot: 'Shoot', travel: 'Travel', weekend: 'Weekend' }[occ];
 
-// ═══════════════════════════════════════════════
-// GOVERNANCE VIEW
-// ═══════════════════════════════════════════════
-function GovernanceView() {
-  const radarData = [
-    { dept: 'Water', efficiency: 72 }, { dept: 'Roads', efficiency: 58 },
-    { dept: 'Power', efficiency: 81 }, { dept: 'Sanitation', efficiency: 67 },
-    { dept: 'Health', efficiency: 76 }, { dept: 'Transport', efficiency: 64 }
+    document.getElementById('outfitTitle').textContent = `Your ${styleName} ${occName} Fit ${weaIcon}`;
+    const tpl = outfitTemplates[style];
+    const pieces = [
+      { type: 'top', name: pickRand(tpl.top) },
+      { type: 'bottom', name: pickRand(tpl.bottom) },
+      { type: 'shoes', name: pickRand(tpl.shoes) },
+      { type: 'acc', name: pickRand(tpl.acc) },
+    ];
+    const grid = document.getElementById('outfitPieces');
+    grid.innerHTML = pieces.map(p => {
+      const isCloset = Math.random() > 0.5;
+      return `
+        <div class="piece">
+          <div class="piece-img"><img src="${pickRand(productImages[p.type])}" alt="${p.name}"></div>
+          <div class="piece-name">${p.name}</div>
+          <div class="piece-source ${isCloset ? '' : 'shop'}">${isCloset ? '👗 From closet' : '🛍️ Shop now'}</div>
+        </div>
+      `;
+    }).join('');
+  }
+  generateOutfit();
+
+  // ===== Shop (with product photos) =====
+  const shopItems = {
+    'cargo pants': [
+      { name: 'High-waist cargo pant', price: 1499, store: 'amazon', img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400' },
+      { name: 'Low-rise wide cargo', price: 1899, store: 'myntra', img: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400' },
+      { name: 'Distressed cargo trouser', price: 999, store: 'shein', img: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400' },
+      { name: 'Utility cargo joggers', price: 799, store: 'flipkart', img: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400' },
+      { name: 'Parachute cargo', price: 2299, store: 'myntra', img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400' },
+      { name: 'Y2K low cargo', price: 1199, store: 'shein', img: 'https://images.unsplash.com/photo-1551854838-212c50b4c184?w=400' },
+      { name: 'Olive cargo wide', price: 1599, store: 'amazon', img: 'https://images.unsplash.com/photo-1604176354204-9268737828e4?w=400' },
+      { name: 'Black baggy cargo', price: 899, store: 'flipkart', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400' },
+    ],
+    'baby tee': [
+      { name: 'Cropped baby tee', price: 599, store: 'shein', img: 'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400' },
+      { name: 'Pink fitted tee', price: 799, store: 'myntra', img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400' },
+      { name: 'Y2K logo baby tee', price: 999, store: 'amazon', img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400' },
+      { name: 'Ribbed crop tee', price: 449, store: 'flipkart', img: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400' },
+      { name: 'Heart print tee', price: 699, store: 'shein', img: 'https://images.unsplash.com/photo-1554568218-0f1715e72254?w=400' },
+      { name: 'White crop top', price: 549, store: 'amazon', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400' },
+    ],
+    default: [
+      { name: 'Trending fit', price: 1299, store: 'amazon', img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400' },
+      { name: 'Style pick', price: 999, store: 'myntra', img: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400' },
+      { name: 'Hot drop', price: 799, store: 'shein', img: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400' },
+      { name: 'Best value', price: 599, store: 'flipkart', img: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=400' },
+    ]
+  };
+  let activeStore = 'all';
+  function renderShop() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const items = shopItems[q] || shopItems.default;
+    const filtered = activeStore === 'all' ? items : items.filter(i => i.store === activeStore);
+    const grid = document.getElementById('shopGrid');
+    grid.innerHTML = filtered.length ? filtered.map(it => `
+      <div class="shop-item">
+        <div class="shop-img"><img src="${it.img}" alt="${it.name}"></div>
+        <div class="shop-name">${it.name}</div>
+        <div class="shop-meta">
+          <div class="shop-price">₹${it.price}</div>
+          <div class="shop-store ${it.store}">${it.store}</div>
+        </div>
+      </div>
+    `).join('') : '<p style="grid-column:1/-1; text-align:center; padding:40px; font-weight:700;">No matches in this store. Try another! 🔍</p>';
+  }
+  document.querySelectorAll('.store-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.store-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      activeStore = t.dataset.store;
+      renderShop();
+    });
+  });
+  renderShop();
+
+  // ===== Community (with photos) =====
+  const posts = [
+    { user: 'A', handle: '@avani.fits', style: 'Y2K', img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500', likes: 142 },
+    { user: 'M', handle: '@meera.dressed', style: 'Coquette', img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500', likes: 289 },
+    { user: 'R', handle: '@riya.streets', style: 'Streetwear', img: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500', likes: 88 },
+    { user: 'S', handle: '@sana.minimal', style: 'Clean Girl', img: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500', likes: 201 },
+    { user: 'K', handle: '@kavya.ballet', style: 'Balletcore', img: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500', likes: 167 },
+    { user: 'T', handle: '@tara.grunge', style: 'Grunge', img: 'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=500', likes: 94 },
+    { user: 'P', handle: '@priya.minimal', style: 'Minimal', img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500', likes: 312 },
+    { user: 'I', handle: '@isha.glow', style: 'Y2K', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500', likes: 178 },
   ];
-  const responseData = [
-    { month: 'Jan', hours: 24 }, { month: 'Feb', hours: 22 }, { month: 'Mar', hours: 21 },
-    { month: 'Apr', hours: 19 }, { month: 'May', hours: 18 }, { month: 'Jun', hours: 18.4 }
-  ];
+  function renderFeed() {
+    const feed = document.getElementById('feed');
+    feed.innerHTML = posts.map(p => `
+      <div class="post">
+        <div class="post-img"><img src="${p.img}" alt="${p.style}"></div>
+        <div class="post-body">
+          <div class="post-user">
+            <div class="post-avatar">${p.user}</div>
+            <div style="flex:1;">
+              <div class="post-handle">${p.handle}</div>
+              <span class="post-style">${p.style}</span>
+            </div>
+          </div>
+          <div class="post-actions">
+            <button class="post-action fire" onclick="this.textContent='🔥 ' + (${p.likes}+1)">🔥 ${p.likes}</button>
+            <button class="post-action">💬 Vote</button>
+            <button class="post-action">🔁 Save</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  renderFeed();
 
-  const tooltipStyle = { background: C.bg, border: `1px solid ${C.deep}`, borderRadius: 8, color: C.rose };
+  document.querySelectorAll('.modal-bg').forEach(m => {
+    m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); });
+  });
+</script>
 
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Governance Analytics" )
-        , _react2.default.createElement('p', { className: "mt-1", style: { color: C.textMuted },}, "Department performance · executive view"    )
-      )
 
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-3 gap-3 mb-6"   ,}
-        , [
-          { label: 'Avg Response', val: '18.4 hrs', trend: '↓ 23%' },
-          { label: 'Resolution Rate', val: '87.3%', trend: '↑ 4.2%' },
-          { label: 'Citizen Score', val: '4.2/5', trend: '↑ 0.3' }
-        ].map(s => (
-          _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-            , _react2.default.createElement('div', { className: "text-xs tracking-wide" , style: { color: C.textSoft },}, s.label)
-            , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight mt-1"   , style: { color: C.rose },}, s.val)
-            , _react2.default.createElement('div', { className: "text-xs mt-1 font-mono"  , style: { color: C.rose },}, s.trend)
-          )
-        ))
-      )
 
-      , _react2.default.createElement('div', { className: "grid lg:grid-cols-2 gap-4"  ,}
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "Department Efficiency" )
-          , _react2.default.createElement(_recharts.ResponsiveContainer, { width: "100%", height: 250,}
-            , _react2.default.createElement(_recharts.RadarChart, { data: radarData,}
-              , _react2.default.createElement(_recharts.PolarGrid, { stroke: C.border,} )
-              , _react2.default.createElement(_recharts.PolarAngleAxis, { dataKey: "dept", stroke: C.textMuted, fontSize: 11,} )
-              , _react2.default.createElement(_recharts.PolarRadiusAxis, { stroke: C.border, fontSize: 10,} )
-              , _react2.default.createElement(_recharts.Radar, { dataKey: "efficiency", stroke: C.deep, fill: C.deep, fillOpacity: 0.5, strokeWidth: 2,} )
-            )
-          )
-        )
-
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "Response Time Trend"  )
-          , _react2.default.createElement(_recharts.ResponsiveContainer, { width: "100%", height: 250,}
-            , _react2.default.createElement(_recharts.LineChart, { data: responseData,}
-              , _react2.default.createElement(_recharts.CartesianGrid, { strokeDasharray: "3 3" , stroke: C.border,} )
-              , _react2.default.createElement(_recharts.XAxis, { dataKey: "month", stroke: C.textMuted, fontSize: 11,} )
-              , _react2.default.createElement(_recharts.YAxis, { stroke: C.textMuted, fontSize: 11,} )
-              , _react2.default.createElement(_recharts.Tooltip, { contentStyle: tooltipStyle,} )
-              , _react2.default.createElement(_recharts.Line, { type: "monotone", dataKey: "hours", stroke: C.rose, strokeWidth: 3, dot: { fill: C.rose, r: 5 },} )
-            )
-          )
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5 mt-4"   , style: cardStyle,}
-        , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "Top Performing Nodes"  )
-        , _react2.default.createElement('div', { className: "space-y-3",}
-          , [
-            { dept: 'MSEDCL Power Grid', score: 81 },
-            { dept: 'Health Services', score: 76 },
-            { dept: 'Water Department', score: 72 },
-            { dept: 'Sanitation', score: 67 },
-            { dept: 'Transport', score: 64 },
-            { dept: 'PWD Roads', score: 58 }
-          ].map((d, i) => (
-            _react2.default.createElement('div', { key: d.dept, className: "flex items-center gap-3"  ,}
-              , _react2.default.createElement('div', { className: "w-32 md:w-40 text-sm truncate"   , style: { color: C.textMuted },}, d.dept)
-              , _react2.default.createElement('div', { className: "flex-1 rounded-full h-2.5 overflow-hidden"   , style: { backgroundColor: C.borderSoft },}
-                , _react2.default.createElement(_framermotion.motion.div, {
-                  initial: { width: 0 },
-                  animate: { width: `${d.score}%` },
-                  transition: { delay: i * 0.1, duration: 0.8 },
-                  className: "h-full",
-                  style: { background: `linear-gradient(90deg, ${C.deep}, ${C.rose})` },}
-                )
-              )
-              , _react2.default.createElement('div', { className: "text-sm font-bold w-12 text-right text-white"    ,}, d.score, "%")
-            )
-          ))
-        )
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// ENVIRONMENT VIEW
-// ═══════════════════════════════════════════════
-function EnvironmentView() {
-  const aqiData = [
-    { hr: '00', aqi: 98 }, { hr: '04', aqi: 112 }, { hr: '08', aqi: 156 },
-    { hr: '12', aqi: 142 }, { hr: '16', aqi: 168 }, { hr: '20', aqi: 134 }
-  ];
-  const liveAQI = useLiveNumber(142, 0.04, 2500);
-
-  const tooltipStyle = { background: C.bg, border: `1px solid ${C.deep}`, borderRadius: 8, color: C.rose };
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Environmental Intelligence" )
-        , _react2.default.createElement('p', { className: "mt-1", style: { color: C.textMuted },}, "Air · water · green cover · live sensor mesh"         )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-4 gap-3 mb-6"   ,}
-        , [
-          { label: 'AQI', val: liveAQI, sub: 'Moderate', icon: _lucidereact.Wind },
-          { label: 'PM 2.5', val: '67 µg/m³', sub: '+12% vs avg', icon: _lucidereact.Activity, raw: true },
-          { label: 'Green Cover', val: '23.4%', sub: '+0.8% YoY', icon: _lucidereact.TreePine, raw: true },
-          { label: 'Water Quality', val: '7.2 pH', sub: 'Optimal', icon: _lucidereact.Droplets, raw: true }
-        ].map(s => {
-          const Icon = s.icon;
-          return (
-            _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-              , _react2.default.createElement('div', { className: "flex items-center justify-between mb-2"   ,}
-                , _react2.default.createElement('div', { className: "text-xs", style: { color: C.textSoft },}, s.label)
-                , _react2.default.createElement(Icon, { className: "w-4 h-4" , style: { color: C.rose },} )
-              )
-              , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight"  , style: { color: C.rose },}
-                , s.raw ? s.val : _react2.default.createElement(AnimatedNumber, { value: s.val,} )
-              )
-              , _react2.default.createElement('div', { className: "text-xs mt-0.5" , style: { color: C.textMuted },}, s.sub)
-            )
-          );
-        })
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5 mb-4"   , style: cardStyle,}
-        , _react2.default.createElement('h3', { className: "font-semibold mb-4 text-white"  ,}, "AQI · Last 24 Hours"    )
-        , _react2.default.createElement(_recharts.ResponsiveContainer, { width: "100%", height: 220,}
-          , _react2.default.createElement(_recharts.AreaChart, { data: aqiData,}
-            , _react2.default.createElement('defs', null
-              , _react2.default.createElement('linearGradient', { id: "aqiG", x1: "0", y1: "0", x2: "0", y2: "1",}
-                , _react2.default.createElement('stop', { offset: "0%", stopColor: C.deep, stopOpacity: 0.6,} )
-                , _react2.default.createElement('stop', { offset: "100%", stopColor: C.deep, stopOpacity: 0,} )
-              )
-            )
-            , _react2.default.createElement(_recharts.CartesianGrid, { strokeDasharray: "3 3" , stroke: C.border,} )
-            , _react2.default.createElement(_recharts.XAxis, { dataKey: "hr", stroke: C.textMuted, fontSize: 11,} )
-            , _react2.default.createElement(_recharts.YAxis, { stroke: C.textMuted, fontSize: 11,} )
-            , _react2.default.createElement(_recharts.Tooltip, { contentStyle: tooltipStyle,} )
-            , _react2.default.createElement(_recharts.Area, { type: "monotone", dataKey: "aqi", stroke: C.deep, fill: "url(#aqiG)", strokeWidth: 2,} )
-          )
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-2 gap-4"  ,}
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 flex items-center gap-2 text-white"     ,}
-            , _react2.default.createElement(_lucidereact.TreePine, { className: "w-4 h-4" , style: { color: C.rose },} ), " Green Initiatives"
-          )
-          , _react2.default.createElement('div', { className: "space-y-2",}
-            , [
-              { t: 'Mini-Forest Project · Belapur', s: '12,400 saplings · 3.2 hectares' },
-              { t: 'Mangrove Restoration', s: 'Vashi Creek · 47 ha protected' },
-              { t: 'Solar Rooftop Drive', s: '2,840 households onboarded' }
-            ].map((x, i) => (
-              _react2.default.createElement('div', { key: i, className: "border rounded-xl p-3"  , style: innerCardStyle,}
-                , _react2.default.createElement('div', { className: "font-semibold text-white text-sm"  ,}, x.t)
-                , _react2.default.createElement('div', { className: "text-xs mt-0.5" , style: { color: C.textSoft },}, x.s)
-              )
-            ))
-          )
-        )
-
-        , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-          , _react2.default.createElement('h3', { className: "font-semibold mb-4 flex items-center gap-2 text-white"     ,}
-            , _react2.default.createElement(_lucidereact.Wind, { className: "w-4 h-4" , style: { color: C.rose },} ), " Sensor Mesh · Live"
-          )
-          , _react2.default.createElement('div', { className: "space-y-2",}
-            , [
-              { l: 'Vashi Junction', v: 142 },
-              { l: 'Belapur CBD', v: 98 },
-              { l: 'Nerul Station', v: 128 },
-              { l: 'Kharghar Hills', v: 76 },
-              { l: 'Industrial Zone', v: 189 }
-            ].map(x => {
-              const c = x.v > 150 ? C.deep : x.v > 100 ? '#c87583' : C.rose;
-              return (
-                _react2.default.createElement('div', { key: x.l, className: "flex justify-between items-center border rounded-xl p-3"     , style: innerCardStyle,}
-                  , _react2.default.createElement('span', { className: "text-sm", style: { color: C.textMuted },}, x.l)
-                  , _react2.default.createElement('span', { className: "font-bold font-mono" , style: { color: c },}, x.v)
-                )
-              );
-            })
-          )
-        )
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// TRANSPORT VIEW
-// ═══════════════════════════════════════════════
-function TransportView() {
-  const congestion = [
-    { road: 'Palm Beach Rd', level: 65 },
-    { road: 'Sion-Panvel', level: 32 },
-    { road: 'Thane-Belapur', level: 78 },
-    { road: 'Vashi Bridge', level: 84 },
-    { road: 'Atal Setu', level: 45 }
-  ];
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Transport Operations" )
-        , _react2.default.createElement('p', { className: "mt-1", style: { color: C.textMuted },}, "Roads · rail · metro · air integration"       )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-4 gap-3 mb-6"   ,}
-        , [
-          { label: 'Active Buses', val: 847, icon: _lucidereact.Bus },
-          { label: 'Train Frequency', val: '98%', icon: _lucidereact.Train, raw: true },
-          { label: 'Avg Commute', val: '34 min', icon: _lucidereact.Clock, raw: true },
-          { label: 'NMIA Flights', val: '128/day', icon: _lucidereact.Plane, raw: true }
-        ].map(s => {
-          const Icon = s.icon;
-          return (
-            _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-              , _react2.default.createElement(Icon, { className: "w-5 h-5 mb-2"  , style: { color: C.rose },} )
-              , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight text-white"   ,}
-                , s.raw ? s.val : _react2.default.createElement(AnimatedNumber, { value: s.val,} )
-              )
-              , _react2.default.createElement('div', { className: "text-xs mt-0.5" , style: { color: C.textSoft },}, s.label)
-            )
-          );
-        })
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5 mb-4"   , style: cardStyle,}
-        , _react2.default.createElement('h3', { className: "font-semibold mb-4 flex items-center gap-2 text-white"     ,}
-          , _react2.default.createElement(_lucidereact.Car, { className: "w-4 h-4" , style: { color: C.rose },} ), " Live Congestion"
-        )
-        , _react2.default.createElement('div', { className: "space-y-3",}
-          , congestion.map((c, i) => {
-            const col = c.level > 70 ? C.deep : c.level > 40 ? '#c87583' : C.rose;
-            return (
-              _react2.default.createElement('div', { key: c.road,}
-                , _react2.default.createElement('div', { className: "flex justify-between text-sm mb-1.5"   ,}
-                  , _react2.default.createElement('span', { style: { color: C.textMuted },}, c.road)
-                  , _react2.default.createElement('span', { className: "font-mono font-bold" , style: { color: col },}, c.level, "%")
-                )
-                , _react2.default.createElement('div', { className: "rounded-full h-2 overflow-hidden"  , style: { backgroundColor: C.borderSoft },}
-                  , _react2.default.createElement(_framermotion.motion.div, {
-                    initial: { width: 0 },
-                    animate: { width: `${c.level}%` },
-                    transition: { delay: i * 0.08, duration: 0.7 },
-                    className: "h-full",
-                    style: { background: `linear-gradient(90deg, ${col}, ${C.rose})` },}
-                  )
-                )
-              )
-            );
-          })
-        )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-3 gap-4"  ,}
-        , [
-          { i: _lucidereact.Train, t: 'Harbour Line', s: 'Vashi → CSMT in 4 min · on time' },
-          { i: _lucidereact.Bus, t: 'NMMT Bus', s: 'Route 121 · Sec 17 in 7 min' },
-          { i: _lucidereact.Plane, t: 'NMIA', s: '128 daily flights · Phase 2 ops' }
-        ].map((x, i) => {
-          const I = x.i;
-          return (
-            _react2.default.createElement('div', { key: i, className: "border rounded-2xl p-5 transition-colors"   , style: cardStyle,}
-              , _react2.default.createElement('div', { className: "inline-flex p-2.5 rounded-xl mb-3 shadow-lg"    ,
-                   style: { background: `linear-gradient(135deg, ${C.deep}, ${C.deepDark})` },}
-                , _react2.default.createElement(I, { className: "w-5 h-5 text-white"  ,} )
-              )
-              , _react2.default.createElement('h3', { className: "font-semibold text-white" ,}, x.t)
-              , _react2.default.createElement('p', { className: "text-xs mt-1" , style: { color: C.textMuted },}, x.s)
-            )
-          );
-        })
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// TOURISM VIEW
-// ═══════════════════════════════════════════════
-function TourismView() {
-  const spots = [
-    { name: 'Pandavkada Falls', cat: 'Nature', rating: 4.6, visitors: '2.1k/wk' },
-    { name: 'Wonders Park', cat: 'Recreation', rating: 4.4, visitors: '8.3k/wk' },
-    { name: 'Belapur Fort', cat: 'Heritage', rating: 4.2, visitors: '1.4k/wk' },
-    { name: 'Mini Seashore Vashi', cat: 'Nature', rating: 4.5, visitors: '5.7k/wk' },
-    { name: 'Central Park Kharghar', cat: 'Recreation', rating: 4.7, visitors: '12k/wk' },
-    { name: 'Karnala Bird Sanctuary', cat: 'Nature', rating: 4.5, visitors: '3.2k/wk' }
-  ];
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Tourism & Heritage"  )
-        , _react2.default.createElement('p', { className: "mt-1", style: { color: C.textMuted },}, "Discover Navi Mumbai · curated experiences"     )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-3 gap-3 mb-6"   ,}
-        , [
-          { label: 'Tourist Spots', val: '47' },
-          { label: 'Weekly Visitors', val: '32.7k' },
-          { label: 'Avg Rating', val: '4.5/5' }
-        ].map(s => (
-          _react2.default.createElement('div', { key: s.label, className: "border rounded-2xl p-4"  , style: cardStyle,}
-            , _react2.default.createElement('div', { className: "text-xs tracking-wide" , style: { color: C.textSoft },}, s.label)
-            , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight mt-1"   , style: { color: C.rose },}, s.val)
-          )
-        ))
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-2 lg:grid-cols-3 gap-4"   ,}
-        , spots.map((s, i) => (
-          _react2.default.createElement(_framermotion.motion.div, {
-            key: s.name,
-            initial: { opacity: 0, y: 8 },
-            animate: { opacity: 1, y: 0 },
-            transition: { delay: i * 0.05 },
-            whileHover: { y: -4 },
-            className: "border rounded-2xl p-5 transition-all overflow-hidden relative group"      ,
-            style: cardStyle,}
-
-            , _react2.default.createElement('div', { className: "absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity"    ,
-                 style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },} )
-            , _react2.default.createElement('div', { className: "flex items-start justify-between mb-3 relative"    ,}
-              , _react2.default.createElement('div', { className: "p-2 rounded-lg shadow-lg"  , style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },}
-                , _react2.default.createElement(_lucidereact.Mountain, { className: "w-5 h-5 text-white"  ,} )
-              )
-              , _react2.default.createElement('span', { className: "text-xs border px-2 py-0.5 rounded-full"    ,
-                    style: { backgroundColor: 'rgba(36,20,25,0.7)', borderColor: C.borderSoft, color: C.textMuted },}, s.cat)
-            )
-            , _react2.default.createElement('h3', { className: "font-semibold tracking-tight relative text-white"   ,}, s.name)
-            , _react2.default.createElement('div', { className: "flex justify-between text-xs mt-3 pt-3 border-t relative"      , style: { borderColor: C.borderSoft },}
-              , _react2.default.createElement('span', { style: { color: C.rose },}, "★ " , s.rating)
-              , _react2.default.createElement('span', { style: { color: C.textSoft },}, s.visitors)
-            )
-          )
-        ))
-      )
-    )
-  );
-}
-
-// ═══════════════════════════════════════════════
-// PRIVACY VIEW
-// ═══════════════════════════════════════════════
-function PrivacyView() {
-  const apis = [
-    { name: '/v2/citizen/auth', method: 'POST', private: true, calls: 12840 },
-    { name: '/v2/civic/ticket', method: 'POST', private: true, calls: 4218 },
-    { name: '/v2/emergency/dispatch', method: 'POST', private: true, calls: 287 },
-    { name: '/v2/intel/aqi', method: 'GET', private: false, calls: 89200 },
-    { name: '/v2/transit/live', method: 'GET', private: false, calls: 142000 },
-    { name: '/v2/ledger/audit', method: 'GET', private: false, calls: 8430 },
-    { name: '/v2/cortex/query', method: 'POST', private: true, calls: 23100 },
-    { name: '/v2/governance/kpi', method: 'GET', private: false, calls: 6720 }
-  ];
-
-  const principles = [
-    { icon: _lucidereact.Lock, t: 'End-to-End Encryption', d: 'AES-256 + post-quantum lattice. Only you and the receiving dept node can decrypt.' },
-    { icon: _lucidereact.Fingerprint, t: 'Zero-Knowledge Auth', d: 'Login proves identity without revealing credentials. Aadhaar-linked but not stored.' },
-    { icon: _lucidereact.Eye, t: 'Public by Default', d: 'Aggregated city data is open. Personal data is sealed under your private vault.' },
-    { icon: _lucidereact.Shield, t: 'Right to Forget', d: 'Erase your civic history any time. Audit trail remains anonymized.' }
-  ];
-
-  return (
-    _react2.default.createElement('div', null
-      , _react2.default.createElement('div', { className: "mb-8",}
-        , _react2.default.createElement('h2', { className: "text-3xl font-bold tracking-tight text-white"   ,}, "Privacy & APIs"  )
-        , _react2.default.createElement('p', { className: "mt-1", style: { color: C.textMuted },}, "How NMOS protects you · and what powers the OS"         )
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-4 gap-3 mb-8"   ,}
-        , [
-          { l: 'Encrypted Records', v: '4.2M', i: _lucidereact.Lock },
-          { l: 'API Endpoints', v: '47', i: _lucidereact.Network },
-          { l: 'Open Datasets', v: '182', i: _lucidereact.Globe },
-          { l: 'Audit Compliance', v: '100%', i: _lucidereact.CheckCircle2 }
-        ].map(x => {
-          const I = x.i;
-          return (
-            _react2.default.createElement('div', { key: x.l, className: "border rounded-2xl p-4"  , style: cardStyle,}
-              , _react2.default.createElement(I, { className: "w-5 h-5 mb-2"  , style: { color: C.rose },} )
-              , _react2.default.createElement('div', { className: "text-2xl font-bold tracking-tight"  , style: { color: C.rose },}, x.v)
-              , _react2.default.createElement('div', { className: "text-xs mt-0.5" , style: { color: C.textSoft },}, x.l)
-            )
-          );
-        })
-      )
-
-      , _react2.default.createElement('div', { className: "grid md:grid-cols-2 gap-4 mb-6"   ,}
-        , principles.map(p => {
-          const I = p.icon;
-          return (
-            _react2.default.createElement('div', { key: p.t, className: "border rounded-2xl p-5"  , style: cardStyle,}
-              , _react2.default.createElement('div', { className: "flex items-start gap-3"  ,}
-                , _react2.default.createElement('div', { className: "rounded-xl p-2.5 shadow-lg"  , style: { background: `linear-gradient(135deg, ${C.deep}, ${C.rose})` },}
-                  , _react2.default.createElement(I, { className: "w-5 h-5 text-white"  ,} )
-                )
-                , _react2.default.createElement('div', null
-                  , _react2.default.createElement('h3', { className: "font-semibold text-white" ,}, p.t)
-                  , _react2.default.createElement('p', { className: "text-sm mt-1 leading-relaxed"  , style: { color: C.textMuted },}, p.d)
-                )
-              )
-            )
-          );
-        })
-      )
-
-      , _react2.default.createElement('div', { className: "border rounded-2xl p-5"  , style: cardStyle,}
-        , _react2.default.createElement('div', { className: "flex items-center justify-between mb-4"   ,}
-          , _react2.default.createElement('h3', { className: "font-semibold flex items-center gap-2 text-white"    ,}
-            , _react2.default.createElement(_lucidereact.Server, { className: "w-4 h-4" , style: { color: C.rose },} ), " NMOS API Registry"
-          )
-          , _react2.default.createElement('div', { className: "flex gap-2 text-xs"  ,}
-            , _react2.default.createElement('span', { className: "px-2 py-0.5 rounded-full border"   , style: { backgroundColor: 'rgba(162,72,87,0.25)', borderColor: C.deep, color: C.rose },}, "PRIVATE")
-            , _react2.default.createElement('span', { className: "px-2 py-0.5 rounded-full border"   , style: { backgroundColor: 'rgba(218,182,188,0.15)', borderColor: C.rose, color: C.rose },}, "PUBLIC")
-          )
-        )
-        , _react2.default.createElement('div', { className: "space-y-2",}
-          , apis.map(a => (
-            _react2.default.createElement('div', { key: a.name, className: "border rounded-xl p-3 flex items-center justify-between gap-3 transition-colors"       , style: innerCardStyle,}
-              , _react2.default.createElement('div', { className: "flex items-center gap-3 flex-1 min-w-0"    ,}
-                , _react2.default.createElement('span', { className: "text-xs font-mono font-bold px-2 py-0.5 rounded"     ,
-                      style: 
-                        a.method === 'GET'
-                          ? { backgroundColor: 'rgba(218,182,188,0.18)', color: C.rose }
-                          : { backgroundColor: 'rgba(162,72,87,0.3)', color: '#e8c8ce' }
-                      ,}, a.method)
-                , _react2.default.createElement('code', { className: "text-sm truncate font-mono"  , style: { color: C.textMuted },}, a.name)
-              )
-              , _react2.default.createElement('div', { className: "flex items-center gap-3 text-xs"   ,}
-                , _react2.default.createElement('span', { className: "hidden md:inline" , style: { color: C.textSoft },}, a.calls.toLocaleString(), " calls" )
-                , a.private ? (
-                  _react2.default.createElement('span', { className: "px-2 py-0.5 rounded-full border flex items-center gap-1"      ,
-                        style: { backgroundColor: 'rgba(162,72,87,0.25)', borderColor: C.deep, color: C.rose },}
-                    , _react2.default.createElement(_lucidereact.Lock, { className: "w-3 h-3" ,} ), " PRIVATE"
-                  )
-                ) : (
-                  _react2.default.createElement('span', { className: "px-2 py-0.5 rounded-full border flex items-center gap-1"      ,
-                        style: { backgroundColor: 'rgba(218,182,188,0.15)', borderColor: C.rose, color: C.rose },}
-                    , _react2.default.createElement(_lucidereact.Globe, { className: "w-3 h-3" ,} ), " PUBLIC"
-                  )
-                )
-              )
-            )
-          ))
-        )
-      )
-    )
-  );
-}
-</script></head>
-  <body>
-  
-
-<div id="preview-app"></div></body></html>
+</body></html>
